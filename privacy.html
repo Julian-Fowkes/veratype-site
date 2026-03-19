@@ -12,23 +12,24 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:       #07080f;
-      --bg2:      #0d0f1a;
-      --border:   rgba(255,255,255,0.07);
-      --purple:   #7c3aed;
-      --purple-l: #a78bfa;
-      --blue:     #2563eb;
-      --blue-l:   #60a5fa;
-      --text:     #f1f5f9;
-      --muted:    #94a3b8;
-      --card:     rgba(255,255,255,0.04);
+      --navy:     #0a1628;
+      --blue:     #0056d6;
+      --blue-hover:#0044b0;
+      --blue-light:#e8f0fe;
+      --gray-50:  #f8f9fc;
+      --gray-100: #f1f3f7;
+      --gray-200: #e2e6ee;
+      --gray-400: #9aa3b2;
+      --gray-600: #5a6478;
+      --text:     #1a2236;
+      --white:    #ffffff;
     }
 
     html { scroll-behavior: smooth; }
 
     body {
       font-family: 'Inter', sans-serif;
-      background: var(--bg);
+      background: var(--white);
       color: var(--text);
       line-height: 1.7;
     }
@@ -41,41 +42,39 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 18px 40px;
-      background: rgba(7,8,15,0.9);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
+      padding: 0 48px;
+      height: 68px;
+      background: var(--white);
+      border-bottom: 1px solid var(--gray-200);
     }
 
     .nav-logo {
-      font-size: 20px;
-      font-weight: 800;
-      letter-spacing: -0.5px;
-      background: linear-gradient(135deg, var(--purple-l), var(--blue-l));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      font-size: 22px;
+      font-weight: 900;
+      color: var(--navy);
       text-decoration: none;
+      letter-spacing: -0.5px;
     }
+    .nav-logo span { color: var(--blue); }
 
     .nav-back {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      color: var(--muted);
+      color: var(--gray-600);
       text-decoration: none;
       font-size: 14px;
       font-weight: 500;
-      transition: color 0.2s;
+      transition: color 0.15s;
     }
-    .nav-back:hover { color: var(--text); }
+    .nav-back:hover { color: var(--navy); }
 
     /* HERO */
     .page-hero {
       padding: 80px 24px 64px;
       text-align: center;
-      border-bottom: 1px solid var(--border);
-      background: var(--bg2);
+      border-bottom: 1px solid var(--gray-200);
+      background: var(--navy);
     }
 
     .page-hero h1 {
@@ -83,10 +82,11 @@
       font-weight: 900;
       letter-spacing: -1.5px;
       margin-bottom: 12px;
+      color: #fff;
     }
 
     .page-hero p {
-      color: var(--muted);
+      color: #64748b;
       font-size: 16px;
     }
 
@@ -98,19 +98,19 @@
     }
 
     .toc {
-      background: var(--card);
-      border: 1px solid var(--border);
+      background: var(--blue-light);
+      border: 1px solid #bfdbfe;
       border-radius: 12px;
       padding: 24px 28px;
       margin-bottom: 56px;
     }
 
     .toc h3 {
-      font-size: 13px;
+      font-size: 11px;
       font-weight: 700;
       letter-spacing: 1.5px;
       text-transform: uppercase;
-      color: var(--purple-l);
+      color: var(--blue);
       margin-bottom: 16px;
     }
 
@@ -122,12 +122,12 @@
     }
 
     .toc a {
-      color: var(--muted);
+      color: var(--blue);
       text-decoration: none;
       font-size: 14px;
-      transition: color 0.2s;
+      transition: color 0.15s;
     }
-    .toc a:hover { color: var(--text); }
+    .toc a:hover { color: var(--navy); }
 
     .policy-section {
       margin-bottom: 56px;
@@ -138,13 +138,14 @@
       font-size: 22px;
       font-weight: 800;
       letter-spacing: -0.3px;
+      color: var(--navy);
       margin-bottom: 16px;
       padding-bottom: 12px;
-      border-bottom: 1px solid var(--border);
+      border-bottom: 1px solid var(--gray-200);
     }
 
     .policy-section p {
-      color: #cbd5e1;
+      color: var(--gray-600);
       font-size: 15px;
       margin-bottom: 16px;
       line-height: 1.75;
@@ -156,7 +157,7 @@
     }
 
     .policy-section li {
-      color: #cbd5e1;
+      color: var(--gray-600);
       font-size: 15px;
       margin-bottom: 10px;
       line-height: 1.7;
@@ -168,23 +169,24 @@
     }
 
     .highlight-box {
-      background: rgba(124,58,237,0.08);
-      border: 1px solid rgba(124,58,237,0.2);
+      background: var(--blue-light);
+      border: 1px solid #bfdbfe;
       border-radius: 10px;
       padding: 18px 22px;
       margin-bottom: 16px;
     }
 
     .highlight-box p {
-      color: #c4b5fd;
+      color: #1e40af;
       margin: 0;
       font-size: 14px;
     }
 
     /* FOOTER */
     footer {
-      border-top: 1px solid var(--border);
-      padding: 32px 40px;
+      background: var(--navy);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 32px 48px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -193,29 +195,28 @@
     }
 
     .footer-logo {
-      font-size: 16px;
-      font-weight: 800;
-      background: linear-gradient(135deg, var(--purple-l), var(--blue-l));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      font-size: 18px;
+      font-weight: 900;
+      color: #fff;
+      letter-spacing: -0.3px;
     }
+    .footer-logo span { color: #60a5fa; }
 
     .footer-copy {
       font-size: 13px;
-      color: var(--muted);
+      color: #475569;
     }
 
     @media (max-width: 600px) {
-      nav { padding: 16px 20px; }
-      footer { flex-direction: column; }
+      nav { padding: 0 20px; }
+      footer { flex-direction: column; padding: 24px 20px; }
     }
   </style>
 </head>
 <body>
 
   <nav>
-    <a href="index.html" class="nav-logo">Veratype</a>
+    <a href="index.html" class="nav-logo">Vera<span>type</span></a>
     <a href="index.html" class="nav-back">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
       Back to home
@@ -355,7 +356,7 @@
   </div>
 
   <footer>
-    <span class="footer-logo">Veratype</span>
+    <span class="footer-logo">Vera<span>type</span></span>
     <span class="footer-copy">© 2026 Veratype. All rights reserved.</span>
   </footer>
 
