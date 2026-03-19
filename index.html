@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Veratype — Behavioral Integrity for Google Docs</title>
+  <meta name="description" content="Veratype monitors writing sessions in Google Docs to generate a behavioral integrity score. Built for educators who care about authentic work." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #07080f;
+      --bg2:       #0d0f1a;
+      --border:    rgba(255,255,255,0.07);
+      --purple:    #7c3aed;
+      --purple-l:  #a78bfa;
+      --blue:      #2563eb;
+      --blue-l:    #60a5fa;
+      --green:     #16a34a;
+      --green-l:   #4ade80;
+      --yellow:    #a16207;
+      --yellow-l:  #fde68a;
+      --red:       #dc2626;
+      --red-l:     #fca5a5;
+      --text:      #f1f5f9;
+      --muted:     #94a3b8;
+      --card:      rgba(255,255,255,0.04);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ─────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 40px;
+      background: rgba(7,8,15,0.8);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, var(--purple-l), var(--blue-l));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      background: linear-gradient(135deg, var(--purple), var(--blue));
+      border-radius: 8px;
+      color: #fff;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .nav-cta:hover { opacity: 0.9; transform: translateY(-1px); }
+
+    /* ─── HERO ────────────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 24px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -200px; left: 50%;
+      transform: translateX(-50%);
+      width: 800px; height: 800px;
+      background: radial-gradient(ellipse, rgba(124,58,237,0.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -100px; left: 50%;
+      transform: translateX(-50%);
+      width: 600px; height: 600px;
+      background: radial-gradient(ellipse, rgba(37,99,235,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border: 1px solid rgba(124,58,237,0.4);
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--purple-l);
+      background: rgba(124,58,237,0.08);
+      margin-bottom: 32px;
+    }
+
+    .hero-badge .dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--purple-l);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.5; transform: scale(0.8); }
+    }
+
+    h1 {
+      font-size: clamp(40px, 7vw, 80px);
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: -2px;
+      max-width: 820px;
+      margin-bottom: 24px;
+    }
+
+    h1 .gradient {
+      background: linear-gradient(135deg, var(--purple-l) 0%, var(--blue-l) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-sub {
+      font-size: clamp(16px, 2.5vw, 20px);
+      color: var(--muted);
+      max-width: 560px;
+      margin-bottom: 48px;
+      font-weight: 400;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 32px;
+      background: linear-gradient(135deg, var(--purple), var(--blue));
+      border-radius: 10px;
+      color: #fff;
+      font-size: 16px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 0 40px rgba(124,58,237,0.3);
+    }
+    .btn-primary:hover {
+      opacity: 0.92;
+      transform: translateY(-2px);
+      box-shadow: 0 0 60px rgba(124,58,237,0.45);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 32px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: var(--text);
+      font-size: 16px;
+      font-weight: 600;
+      text-decoration: none;
+      background: var(--card);
+      transition: background 0.2s, border-color 0.2s, transform 0.2s;
+    }
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.07);
+      border-color: rgba(255,255,255,0.15);
+      transform: translateY(-2px);
+    }
+
+    .btn-badge {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 4px;
+      background: rgba(255,255,255,0.15);
+    }
+
+    /* ─── STATS STRIP ─────────────────────────────────── */
+    .stats-strip {
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: var(--bg2);
+      overflow: hidden;
+    }
+
+    .stat-item {
+      flex: 1;
+      max-width: 220px;
+      text-align: center;
+      padding: 32px 24px;
+      border-right: 1px solid var(--border);
+    }
+    .stat-item:last-child { border-right: none; }
+
+    .stat-number {
+      font-size: 36px;
+      font-weight: 900;
+      letter-spacing: -1px;
+      background: linear-gradient(135deg, var(--purple-l), var(--blue-l));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .stat-label {
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 4px;
+      font-weight: 500;
+    }
+
+    /* ─── SECTIONS ────────────────────────────────────── */
+    section {
+      padding: 100px 24px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--purple-l);
+      margin-bottom: 16px;
+    }
+
+    h2 {
+      font-size: clamp(28px, 4vw, 48px);
+      font-weight: 800;
+      letter-spacing: -1px;
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+
+    .section-sub {
+      font-size: 18px;
+      color: var(--muted);
+      max-width: 520px;
+      margin-bottom: 64px;
+    }
+
+    /* ─── HOW IT WORKS ────────────────────────────────── */
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .step-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+      position: relative;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .step-card:hover {
+      border-color: rgba(124,58,237,0.3);
+      transform: translateY(-4px);
+    }
+
+    .step-num {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--purple-l);
+      margin-bottom: 16px;
+    }
+
+    .step-icon {
+      font-size: 32px;
+      margin-bottom: 16px;
+    }
+
+    .step-card h3 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .step-card p {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    /* ─── FEATURES ────────────────────────────────────── */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .feature-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .feature-card:hover {
+      border-color: rgba(37,99,235,0.3);
+      transform: translateY(-3px);
+    }
+
+    .feature-icon {
+      width: 44px; height: 44px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      margin-bottom: 16px;
+    }
+
+    .feature-card h3 {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .feature-card p {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    /* ─── SCORE DEMO ──────────────────────────────────── */
+    .demo-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .demo-panel {
+      background: #fff;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.5);
+      max-width: 300px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+
+    .demo-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 14px;
+      background: #fafafa;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .demo-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #111;
+      flex: 1;
+    }
+
+    .demo-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 3px 9px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+    .demo-badge.green  { background: #dcfce7; color: #16a34a; }
+    .demo-badge.yellow { background: #fef9c3; color: #a16207; }
+    .demo-badge.red    { background: #fee2e2; color: #dc2626; }
+
+    .demo-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: currentColor;
+    }
+
+    .demo-stats {
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .demo-stat {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .demo-stat .lbl { font-size: 12px; color: #6b7280; }
+    .demo-stat .val { font-size: 13px; font-weight: 600; color: #111; }
+
+    .demo-text {
+      padding: 0 0 0 24px;
+    }
+
+    .demo-text h3 {
+      font-size: 22px;
+      font-weight: 800;
+      margin-bottom: 16px;
+      letter-spacing: -0.5px;
+    }
+
+    .demo-point {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .demo-point .check {
+      width: 20px; height: 20px;
+      border-radius: 50%;
+      background: rgba(124,58,237,0.15);
+      color: var(--purple-l);
+      font-size: 11px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .demo-point p {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ─── CTA ─────────────────────────────────────────── */
+    .cta-section {
+      text-align: center;
+      padding: 100px 24px;
+      position: relative;
+    }
+
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center, rgba(124,58,237,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .cta-inner {
+      max-width: 640px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .cta-inner h2 {
+      font-size: clamp(28px, 4vw, 48px);
+      font-weight: 900;
+      letter-spacing: -1.5px;
+      margin-bottom: 16px;
+    }
+
+    .cta-inner p {
+      font-size: 18px;
+      color: var(--muted);
+      margin-bottom: 40px;
+    }
+
+    /* ─── FOOTER ──────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-logo {
+      font-size: 16px;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--purple-l), var(--blue-l));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+    }
+
+    .footer-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 14px;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--text); }
+
+    .footer-copy {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    /* ─── GLOW GRID ───────────────────────────────────── */
+    .glow-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 0%, transparent 100%);
+    }
+
+    /* ─── RESPONSIVE ──────────────────────────────────── */
+    @media (max-width: 768px) {
+      nav { padding: 16px 20px; }
+      .nav-links { display: none; }
+      .stats-strip { flex-wrap: wrap; }
+      .stat-item { min-width: 50%; border-right: none; border-bottom: 1px solid var(--border); }
+      .demo-wrap { grid-template-columns: 1fr; }
+      .demo-panel { margin: 0 auto; }
+      .demo-text { padding: 0; }
+      footer { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <span class="nav-logo">Veratype</span>
+    <ul class="nav-links">
+      <li><a href="#how-it-works">How it works</a></li>
+      <li><a href="#features">Features</a></li>
+      <li><a href="privacy.html">Privacy</a></li>
+    </ul>
+    <a href="#download" class="nav-cta">
+      Get the Extension
+    </a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="glow-grid"></div>
+    <div class="hero-badge">
+      <span class="dot"></span>
+      Built for educators
+    </div>
+    <h1>Know the work is<br /><span class="gradient">genuinely theirs.</span></h1>
+    <p class="hero-sub">
+      Veratype monitors writing sessions in Google Docs and generates a behavioral integrity score — so you can tell the difference between authentic work and AI-assisted shortcuts.
+    </p>
+    <div class="hero-actions">
+      <a href="#download" class="btn-primary">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Add to Chrome
+        <span class="btn-badge">Free</span>
+      </a>
+      <a href="#how-it-works" class="btn-secondary">
+        See how it works
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- STATS STRIP -->
+  <div class="stats-strip">
+    <div class="stat-item">
+      <div class="stat-number">3</div>
+      <div class="stat-label">Behavioral signals tracked</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">5s</div>
+      <div class="stat-label">Active flush interval</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">0</div>
+      <div class="stat-label">Raw keystrokes stored</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">100%</div>
+      <div class="stat-label">Google Docs native</div>
+    </div>
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <section id="how-it-works">
+    <div class="section-label">How it works</div>
+    <h2>Simple for educators.<br />Invisible to students.</h2>
+    <p class="section-sub">Veratype runs quietly in the background — no logins for students, no changes to their workflow.</p>
+
+    <div class="steps">
+      <div class="step-card">
+        <div class="step-num">Step 01</div>
+        <div class="step-icon">🧩</div>
+        <h3>Install the extension</h3>
+        <p>Add Veratype to Chrome in seconds. It activates automatically whenever a student opens a Google Doc.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">Step 02</div>
+        <div class="step-icon">⌨️</div>
+        <h3>Session monitoring begins</h3>
+        <p>Veratype tracks keystrokes, paste events, deletions, and inter-keystroke intervals — the behavioural fingerprint of genuine writing.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">Step 03</div>
+        <div class="step-icon">📊</div>
+        <h3>Review the integrity score</h3>
+        <p>After a session, educators see a score and flag summary. Authentic, Review, or High Risk — backed by real behavioral data.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- LIVE PANEL DEMO -->
+  <div style="background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+    <section>
+      <div class="demo-wrap">
+        <div>
+          <div class="demo-panel">
+            <div class="demo-header">
+              <span class="demo-title">Veratype</span>
+              <span class="demo-badge green">
+                <span class="demo-dot"></span>
+                Authentic
+              </span>
+            </div>
+            <div class="demo-stats">
+              <div class="demo-stat"><span class="lbl">Session duration</span><span class="val">47m 12s</span></div>
+              <div class="demo-stat"><span class="lbl">Keystrokes</span><span class="val">3,841</span></div>
+              <div class="demo-stat"><span class="lbl">Paste events</span><span class="val">2</span></div>
+              <div class="demo-stat"><span class="lbl">Deletions</span><span class="val">214</span></div>
+              <div class="demo-stat"><span class="lbl">Avg. IKI</span><span class="val">183 ms</span></div>
+            </div>
+          </div>
+          <div style="margin-top: 24px;">
+            <div class="demo-panel">
+              <div class="demo-header">
+                <span class="demo-title">Veratype</span>
+                <span class="demo-badge red">
+                  <span class="demo-dot"></span>
+                  High Risk
+                </span>
+              </div>
+              <div class="demo-stats">
+                <div class="demo-stat"><span class="lbl">Session duration</span><span class="val">4m 2s</span></div>
+                <div class="demo-stat"><span class="lbl">Keystrokes</span><span class="val">18</span></div>
+                <div class="demo-stat"><span class="lbl">Paste events</span><span class="val">7</span></div>
+                <div class="demo-stat"><span class="lbl">Deletions</span><span class="val">3</span></div>
+                <div class="demo-stat"><span class="lbl">Avg. IKI</span><span class="val">—</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="demo-text">
+          <div class="section-label">Live overlay</div>
+          <h3>Real-time scores,<br />right inside Docs.</h3>
+          <div class="demo-point">
+            <div class="check">✓</div>
+            <p>A draggable overlay panel shows live stats during any writing session — no need to leave the document.</p>
+          </div>
+          <div class="demo-point">
+            <div class="check">✓</div>
+            <p>Scores update in real time. Authentic work looks very different from paste-heavy sessions at a glance.</p>
+          </div>
+          <div class="demo-point">
+            <div class="check">✓</div>
+            <p>Educators review session summaries in a clean dashboard — filterable by student, document, and risk level.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- FEATURES -->
+  <section id="features">
+    <div class="section-label">Features</div>
+    <h2>Everything an educator needs.</h2>
+    <p class="section-sub">No complex setup. No disruption. Just clear signal on authentic work.</p>
+
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon" style="background: rgba(124,58,237,0.1);">⌨️</div>
+        <h3>Keystroke analysis</h3>
+        <p>Tracks typing rhythm and inter-keystroke intervals — a pattern that's nearly impossible to fake and hard to replicate with AI tools.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" style="background: rgba(37,99,235,0.1);">📋</div>
+        <h3>Paste detection</h3>
+        <p>Catches large paste events instantly. A document written in 3 minutes with 7 pastes tells a very different story than one typed over an hour.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" style="background: rgba(22,163,74,0.1);">🟢</div>
+        <h3>Three-tier scoring</h3>
+        <p>Sessions are scored Authentic, Review, or High Risk based on behavioral signals — clear enough to act on, nuanced enough to be fair.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" style="background: rgba(220,38,38,0.1);">🔒</div>
+        <h3>Privacy-first design</h3>
+        <p>No raw keystrokes are ever stored. Veratype records behavioural metadata only — what you typed is never seen by anyone.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" style="background: rgba(124,58,237,0.1);">📈</div>
+        <h3>Educator dashboard</h3>
+        <p>Review all sessions in one place. Sort by risk level, filter by student or document, and click through to full flag summaries.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" style="background: rgba(37,99,235,0.1);">⚡</div>
+        <h3>Zero friction</h3>
+        <p>Students open Google Docs as normal. Veratype works silently in the background — no accounts to create, no workflow to change.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- DOWNLOAD CTA -->
+  <div id="download" style="background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+    <div class="cta-section">
+      <div class="cta-inner">
+        <div class="section-label" style="margin-bottom: 16px;">Get started</div>
+        <h2>Add Veratype to Chrome — it's free.</h2>
+        <p>Currently under review by the Chrome Web Store. Drop your email and we'll let you know the moment it's live.</p>
+        <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; max-width: 480px; margin: 0 auto;">
+          <input
+            type="email"
+            placeholder="your@email.com"
+            style="
+              flex: 1;
+              min-width: 200px;
+              padding: 14px 18px;
+              border-radius: 10px;
+              border: 1px solid var(--border);
+              background: rgba(255,255,255,0.05);
+              color: var(--text);
+              font-size: 15px;
+              font-family: inherit;
+              outline: none;
+            "
+          />
+          <button style="
+            padding: 14px 24px;
+            background: linear-gradient(135deg, var(--purple), var(--blue));
+            border: none;
+            border-radius: 10px;
+            color: #fff;
+            font-size: 15px;
+            font-weight: 700;
+            font-family: inherit;
+            cursor: pointer;
+            white-space: nowrap;
+            box-shadow: 0 0 30px rgba(124,58,237,0.3);
+          ">Notify me</button>
+        </div>
+        <p style="font-size: 12px; color: var(--muted); margin-top: 16px; margin-bottom: 0;">
+          No spam. Just one email when Veratype goes live on the Chrome Web Store.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="footer-logo">Veratype</span>
+    <ul class="footer-links">
+      <li><a href="#how-it-works">How it works</a></li>
+      <li><a href="#features">Features</a></li>
+      <li><a href="privacy.html">Privacy Policy</a></li>
+    </ul>
+    <span class="footer-copy">© 2026 Veratype. All rights reserved.</span>
+  </footer>
+
+</body>
+</html>
