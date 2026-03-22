@@ -1,0 +1,5 @@
+name = "veratype-site"
+
+[[kv_namespaces]]
+binding = "WAITLIST"
+id = "f4aa0140b3e048548f27efdb51b29c53"
