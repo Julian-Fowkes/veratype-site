@@ -5,6 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Veratype — Academic Integrity That Respects Student Privacy</title>
   <meta name="description" content="Veratype helps educators verify authentic student writing in Google Docs and Word Online — without ever reading a word students type." />
+  <link rel="canonical" href="https://veratype.ai/" />
+  <meta property="og:title" content="Veratype — Academic Integrity That Respects Student Privacy" />
+  <meta property="og:description" content="Veratype analyzes how students write — not what they write. Our algorithm scores 13 behavioural signals to verify authentic work in Google Docs and Word Online." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://veratype.ai/" />
+  <meta property="og:image" content="https://veratype.ai/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Veratype — Academic Integrity That Respects Student Privacy" />
+  <meta name="twitter:description" content="Veratype analyzes how students write — not what they write. Our algorithm scores 13 behavioural signals to verify authentic work in Google Docs and Word Online." />
+  <meta name="twitter:image" content="https://veratype.ai/og-image.png" />
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -40,6 +50,34 @@
       line-height: 1.6;
       font-size: 16px;
       overflow-x: hidden;
+    }
+
+    /* ─── ACCESSIBILITY ──────────────────────────────── */
+    .skip-link {
+      position: absolute;
+      top: -100%;
+      left: 16px;
+      background: var(--blue);
+      color: #fff;
+      padding: 8px 16px;
+      border-radius: 0 0 6px 6px;
+      font-size: 14px;
+      font-weight: 600;
+      z-index: 200;
+      text-decoration: none;
+    }
+    .skip-link:focus { top: 0; }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0,0,0,0);
+      white-space: nowrap;
+      border: 0;
     }
 
     /* ─── ANNOUNCEMENT BAR ───────────────────────────── */
@@ -781,7 +819,8 @@
       nav { padding: 0 24px; }
       .nav-links { display: none; }
       .hero { flex-direction: column; padding: 60px 24px 72px; gap: 48px; }
-      .hero-visual { display: none; }
+      .hero-visual { display: flex; justify-content: center; }
+      .overlay-mock-2 { display: none; }
       .steps { grid-template-columns: 1fr; }
       .features-grid { grid-template-columns: 1fr 1fr; }
       .split { grid-template-columns: 1fr; gap: 48px; }
@@ -801,6 +840,8 @@
   </style>
 </head>
 <body>
+
+  <a href="#main" class="skip-link">Skip to content</a>
 
   <!-- ANNOUNCEMENT BAR -->
   <div class="announce-bar">
@@ -825,6 +866,7 @@
   </nav>
 
   <!-- HERO -->
+  <main id="main">
   <div class="hero">
     <div class="hero-bg-shape"></div>
     <div class="hero-content">
@@ -1040,13 +1082,16 @@
       <div class="section-eyebrow">Get started</div>
       <h2>Academic integrity that respects every student.</h2>
       <p>Veratype is currently under review on the Chrome Web Store. Leave your email and we'll let you know the moment it's ready — one email, no spam.</p>
-      <div class="email-form">
-        <input class="email-input" type="email" placeholder="your@email.com" />
-        <button class="email-submit">Notify me</button>
-      </div>
-      <p class="form-note">One email only. Unsubscribe anytime.</p>
+      <form class="email-form" id="notify-form" action="/api/notify" method="POST">
+        <label for="notify-email" class="sr-only">Email address</label>
+        <input class="email-input" id="notify-email" name="email" type="email" placeholder="your@email.com" required aria-label="Email address" />
+        <button class="email-submit" type="submit">Notify me</button>
+      </form>
+      <p class="form-note" id="form-status">One email only. Unsubscribe anytime.</p>
     </div>
   </div>
+
+  </main>
 
   <!-- FOOTER -->
   <footer>
@@ -1083,6 +1128,46 @@
       </ul>
     </div>
   </footer>
+
+  <!-- NOTIFY FORM HANDLER -->
+  <script>
+    document.getElementById('notify-form').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      var input = document.getElementById('notify-email');
+      var btn = this.querySelector('.email-submit');
+      var status = document.getElementById('form-status');
+      var email = input.value.trim();
+      if (!email) return;
+
+      btn.disabled = true;
+      btn.textContent = 'Sending\u2026';
+
+      try {
+        var res = await fetch('/api/notify', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: email })
+        });
+        if (res.ok) {
+          input.value = '';
+          btn.textContent = 'You\u2019re on the list!';
+          status.textContent = 'We\u2019ll send you one email when Veratype launches.';
+        } else {
+          var data = await res.json().catch(function() { return {}; });
+          btn.textContent = 'Notify me';
+          btn.disabled = false;
+          status.textContent = data.error || 'Something went wrong. Please try again.';
+        }
+      } catch (_) {
+        btn.textContent = 'Notify me';
+        btn.disabled = false;
+        status.textContent = 'Something went wrong. Please try again.';
+      }
+    });
+  </script>
+
+  <!-- Cloudflare Web Analytics — replace BEACON_TOKEN with your token from the Cloudflare dashboard -->
+  <!-- <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "BEACON_TOKEN"}'></script> -->
 
 </body>
 </html>

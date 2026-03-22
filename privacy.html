@@ -5,6 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Privacy Policy — Veratype</title>
   <meta name="description" content="Veratype Privacy Policy — how we collect, use, and protect your data." />
+  <link rel="canonical" href="https://veratype.ai/privacy.html" />
+  <meta property="og:title" content="Privacy Policy — Veratype" />
+  <meta property="og:description" content="Veratype Privacy Policy — how we collect, use, and protect your data." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://veratype.ai/privacy.html" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Privacy Policy — Veratype" />
+  <meta name="twitter:description" content="Veratype Privacy Policy — how we collect, use, and protect your data." />
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -208,6 +216,21 @@
       color: #475569;
     }
 
+    .skip-link {
+      position: absolute;
+      top: -100%;
+      left: 16px;
+      background: var(--blue);
+      color: #fff;
+      padding: 8px 16px;
+      border-radius: 0 0 6px 6px;
+      font-size: 14px;
+      font-weight: 600;
+      z-index: 200;
+      text-decoration: none;
+    }
+    .skip-link:focus { top: 0; }
+
     @media (max-width: 600px) {
       nav { padding: 0 20px; }
       footer { flex-direction: column; padding: 24px 20px; }
@@ -215,6 +238,8 @@
   </style>
 </head>
 <body>
+
+  <a href="#content" class="skip-link">Skip to content</a>
 
   <nav>
     <a href="index.html" class="nav-logo">Vera<span>type</span></a>
@@ -226,10 +251,10 @@
 
   <div class="page-hero">
     <h1>Privacy Policy</h1>
-    <p>Last updated: 18 March 2026</p>
+    <p>Last updated: 22 March 2026</p>
   </div>
 
-  <div class="content">
+  <div class="content" id="content" role="main">
 
     <div class="toc">
       <h3>Contents</h3>
@@ -250,7 +275,7 @@
 
     <div class="policy-section" id="overview">
       <h2>1. Overview</h2>
-      <p>Veratype ("we", "our", "us") provides a Chrome extension that monitors writing behaviour in Google Docs to generate a behavioral integrity score. This policy explains what data the extension collects, how it is used, and how it is protected.</p>
+      <p>Veratype ("we", "our", "us") provides a Chrome extension that monitors writing behaviour in Google Docs and Microsoft Word Online to generate a behavioral integrity score. This policy explains what data the extension collects, how it is used, and how it is protected.</p>
       <div class="highlight-box">
         <p><strong>The short version:</strong> We collect behavioural metadata about writing sessions — typing rhythm, paste events, deletions. We never store the actual content of what you type. Your raw keystrokes are never recorded or transmitted.</p>
       </div>
@@ -258,14 +283,14 @@
 
     <div class="policy-section" id="what-we-collect">
       <h2>2. What we collect</h2>
-      <p>When the Veratype extension is active during a Google Docs session, we collect the following behavioural metadata:</p>
+      <p>When the Veratype extension is active during a Google Docs or Word Online session, we collect the following behavioural metadata:</p>
       <ul>
         <li><strong>Keystroke categories</strong> — the type of key pressed (alphabetic, numeric, symbol, delete, enter, space, arrow, or other). We do <em>not</em> record which specific key was pressed.</li>
         <li><strong>Inter-keystroke intervals (IKI)</strong> — the time in milliseconds between consecutive key presses. This is used to identify natural human typing rhythm.</li>
         <li><strong>Paste events</strong> — the number of paste actions and the character count of pasted content. We do not capture the pasted text itself.</li>
         <li><strong>Deletion count</strong> — the number of delete/backspace key presses in a session.</li>
         <li><strong>DOM mutation signals</strong> — aggregate counts of characters inserted or deleted in the document editor, used as a cross-check against keystroke data.</li>
-        <li><strong>Session metadata</strong> — a randomly generated session ID, session start time, session duration, the Google Docs document ID, and the document title.</li>
+        <li><strong>Session metadata</strong> — a randomly generated session ID, session start time, session duration, the document ID (from Google Docs or Word Online), and the document title.</li>
       </ul>
       <p>This data is associated with a user account created by the educator who installed and configured Veratype for their institution.</p>
     </div>
@@ -276,7 +301,7 @@
         <li>The text you type — we never record the content of your writing.</li>
         <li>The specific keys you press — only broad categories (e.g. "alphabetic key") are recorded.</li>
         <li>The content of pasted text — only the character count is captured.</li>
-        <li>Browsing history, other tabs, or any activity outside of Google Docs.</li>
+        <li>Browsing history, other tabs, or any activity outside of Google Docs and Word Online.</li>
         <li>Passwords, form data, or any other sensitive input.</li>
         <li>Camera, microphone, or any device sensor data.</li>
       </ul>
@@ -360,6 +385,9 @@
     <span class="footer-logo">Vera<span>type</span></span>
     <span class="footer-copy">© 2026 Veratype. All rights reserved.</span>
   </footer>
+
+  <!-- Cloudflare Web Analytics — replace BEACON_TOKEN with your token from the Cloudflare dashboard -->
+  <!-- <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "BEACON_TOKEN"}'></script> -->
 
 </body>
 </html>
