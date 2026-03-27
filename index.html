@@ -739,6 +739,96 @@
       margin-top: 14px;
     }
 
+    /* ─── CONTACT MODAL ───────────────────────────────── */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.55);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      z-index: 1000;
+      backdrop-filter: blur(3px);
+    }
+    .modal-overlay[hidden] { display: none; }
+
+    .modal-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 40px;
+      max-width: 480px;
+      width: 100%;
+      position: relative;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.18);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 14px;
+      right: 18px;
+      background: none;
+      border: none;
+      font-size: 26px;
+      line-height: 1;
+      cursor: pointer;
+      color: var(--gray-400);
+      padding: 4px 8px;
+    }
+    .modal-close:hover { color: var(--text); }
+
+    .modal-card h2 {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+    .modal-card > p {
+      font-size: 14px;
+      color: var(--gray-400);
+      margin-bottom: 24px;
+    }
+
+    .modal-field { margin-bottom: 16px; }
+    .modal-field label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+    .modal-field input,
+    .modal-field textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1.5px solid var(--gray-200);
+      border-radius: 8px;
+      font-size: 15px;
+      font-family: inherit;
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.15s;
+      box-sizing: border-box;
+    }
+    .modal-field input:focus,
+    .modal-field textarea:focus { border-color: var(--blue); }
+    .modal-field textarea { resize: vertical; min-height: 110px; }
+
+    .modal-submit {
+      width: 100%;
+      padding: 14px;
+      margin-top: 8px;
+      font-size: 15px;
+    }
+    .modal-submit:disabled { opacity: 0.4; cursor: not-allowed; }
+    .modal-status {
+      font-size: 13px;
+      color: #ef4444;
+      text-align: center;
+      margin-top: 10px;
+      min-height: 18px;
+    }
+
     /* ─── FOOTER ──────────────────────────────────────── */
     footer {
       background: var(--navy);
@@ -845,8 +935,8 @@
 
   <!-- ANNOUNCEMENT BAR -->
   <div class="announce-bar">
-    Veratype is currently under review on the Chrome Web Store.
-    <a href="#notify">Get notified when it launches →</a>
+    Veratype is now live on the Chrome Web Store.
+    <a href="https://chromewebstore.google.com/detail/dfjbbmkhmiplmnpcpoeijcimiajknmea" target="_blank" rel="noopener">Add to Chrome — it&rsquo;s free &rarr;</a>
   </div>
 
   <!-- NAV -->
@@ -860,7 +950,7 @@
       </ul>
     </div>
     <div class="nav-right">
-      <a href="#notify" class="btn-ghost">Get notified</a>
+      <button type="button" class="btn-ghost" id="open-modal-nav">Ask a question</button>
       <a href="https://chromewebstore.google.com/detail/dfjbbmkhmiplmnpcpoeijcimiajknmea" class="btn-blue" target="_blank" rel="noopener">Add to Chrome</a>
     </div>
   </nav>
@@ -1076,22 +1166,40 @@
     <p class="quote-attr">The Veratype Team</p>
   </div>
 
-  <!-- NOTIFY CTA -->
+  <!-- CONTACT CTA -->
   <div id="notify" class="cta-section">
     <div class="cta-inner">
-      <div class="section-eyebrow">Get started</div>
-      <h2>Academic integrity that respects every student.</h2>
-      <p>Veratype is currently under review on the Chrome Web Store. Leave your email and we'll let you know the moment it's ready — one email, no spam.</p>
-      <form class="email-form" id="notify-form" action="/api/notify" method="POST">
-        <label for="notify-email" class="sr-only">Email address</label>
-        <input class="email-input" id="notify-email" name="email" type="email" placeholder="your@email.com" required aria-label="Email address" />
-        <button class="email-submit" type="submit">Notify me</button>
-      </form>
-      <p class="form-note" id="form-status">One email only. Unsubscribe anytime.</p>
+      <div class="section-eyebrow">Get in touch</div>
+      <h2>Have a question about Veratype?</h2>
+      <p>Curious how it works, thinking about a school-wide rollout, or anything else — we&rsquo;d love to hear from you.</p>
+      <button type="button" class="btn-hero-primary" id="open-modal-cta" style="margin: 24px auto 0; display: inline-flex;">
+        Ask us anything
+      </button>
     </div>
   </div>
 
   </main>
+
+  <!-- CONTACT MODAL -->
+  <div id="contact-modal" class="modal-overlay" hidden aria-modal="true" role="dialog" aria-labelledby="modal-title">
+    <div class="modal-card">
+      <button class="modal-close" id="modal-close" aria-label="Close">&times;</button>
+      <h2 id="modal-title">Ask us anything</h2>
+      <p>We&rsquo;ll reply to the email you provide below.</p>
+      <form id="contact-form" novalidate>
+        <div class="modal-field">
+          <label for="contact-email">Your email</label>
+          <input type="email" id="contact-email" name="email" placeholder="you@example.com" autocomplete="email" />
+        </div>
+        <div class="modal-field">
+          <label for="contact-question">Your question</label>
+          <textarea id="contact-question" name="question" placeholder="What would you like to know?" rows="4"></textarea>
+        </div>
+        <button type="submit" id="contact-submit" class="email-submit modal-submit" disabled>Send question</button>
+        <p class="modal-status" id="modal-status"></p>
+      </form>
+    </div>
+  </div>
 
   <!-- FOOTER -->
   <footer>
@@ -1105,7 +1213,7 @@
         <ul>
           <li><a href="#how-it-works">How it works</a></li>
           <li><a href="#features">Features</a></li>
-          <li><a href="#notify">Get notified</a></li>
+          <li><a href="#" id="open-modal-footer">Ask a question</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -1129,39 +1237,70 @@
     </div>
   </footer>
 
-  <!-- NOTIFY FORM HANDLER -->
+  <!-- CONTACT MODAL HANDLER -->
   <script>
-    document.getElementById('notify-form').addEventListener('submit', async function(e) {
-      e.preventDefault();
-      var input = document.getElementById('notify-email');
-      var btn = this.querySelector('.email-submit');
-      var status = document.getElementById('form-status');
-      var email = input.value.trim();
-      if (!email) return;
+    var modal       = document.getElementById('contact-modal');
+    var emailInput  = document.getElementById('contact-email');
+    var questionInput = document.getElementById('contact-question');
+    var submitBtn   = document.getElementById('contact-submit');
+    var modalStatus = document.getElementById('modal-status');
 
-      btn.disabled = true;
-      btn.textContent = 'Sending\u2026';
+    function openModal() {
+      modal.removeAttribute('hidden');
+      emailInput.focus();
+      document.body.style.overflow = 'hidden';
+    }
+    function closeModal() {
+      modal.setAttribute('hidden', '');
+      document.body.style.overflow = '';
+    }
+
+    document.getElementById('open-modal-nav').addEventListener('click', openModal);
+    document.getElementById('open-modal-cta').addEventListener('click', openModal);
+    document.getElementById('open-modal-footer').addEventListener('click', function(e) {
+      e.preventDefault(); openModal();
+    });
+    document.getElementById('modal-close').addEventListener('click', closeModal);
+    modal.addEventListener('click', function(e) { if (e.target === modal) closeModal(); });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && !modal.hasAttribute('hidden')) closeModal();
+    });
+
+    function validate() {
+      var emailOk    = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value.trim());
+      var questionOk = questionInput.value.trim().length > 1;
+      submitBtn.disabled = !(emailOk && questionOk);
+    }
+    emailInput.addEventListener('input', validate);
+    questionInput.addEventListener('input', validate);
+
+    document.getElementById('contact-form').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending\u2026';
+      modalStatus.textContent = '';
 
       try {
-        var res = await fetch('/api/notify', {
+        var res = await fetch('/api/contact', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email: email })
+          body: JSON.stringify({
+            email: emailInput.value.trim(),
+            question: questionInput.value.trim(),
+          }),
         });
         if (res.ok) {
-          input.value = '';
-          btn.textContent = 'You\u2019re on the list!';
-          status.textContent = 'We\u2019ll send you one email when Veratype launches.';
+          this.innerHTML = '<p style="text-align:center;color:var(--blue);font-weight:700;font-size:16px;padding:24px 0">Message sent \u2014 we\u2019ll be in touch!</p>';
         } else {
           var data = await res.json().catch(function() { return {}; });
-          btn.textContent = 'Notify me';
-          btn.disabled = false;
-          status.textContent = data.error || 'Something went wrong. Please try again.';
+          modalStatus.textContent = data.error || 'Something went wrong. Please try again.';
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Send question';
         }
       } catch (_) {
-        btn.textContent = 'Notify me';
-        btn.disabled = false;
-        status.textContent = 'Something went wrong. Please try again.';
+        modalStatus.textContent = 'Something went wrong. Please try again.';
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Send question';
       }
     });
   </script>
