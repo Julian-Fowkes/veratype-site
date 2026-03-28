@@ -1281,7 +1281,7 @@
       modalStatus.textContent = '';
 
       try {
-        var res = await fetch('/api/contact', {
+        var res = await fetch('https://api.veratype.ai/contact', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
