@@ -15,6 +15,8 @@ Marketing site for [veratype.ai](https://veratype.ai), deployed via Cloudflare W
 |------|-----|-------|
 | `index.html` | `https://veratype.ai` | Main marketing page with contact modal |
 | `privacy.html` | `https://veratype.ai/privacy.html` | Privacy policy — linked from Chrome extension, must stay live |
+| `sitemap.xml` | `https://veratype.ai/sitemap.xml` | Update `lastmod` dates when pages change |
+| `robots.txt` | `https://veratype.ai/robots.txt` | Allows all crawlers, references sitemap |
 
 ## Contact Form
 

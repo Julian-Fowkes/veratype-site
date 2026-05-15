@@ -18,6 +18,8 @@ Live infrastructure state and gotchas for AI agents working on this repo. Comple
 |------|-----|-------|
 | `index.html` | `https://veratype.ai` | Main marketing page with contact modal |
 | `privacy.html` | `https://veratype.ai/privacy.html` | Privacy policy — linked from Chrome extension, must stay live |
+| `robots.txt` | `https://veratype.ai/robots.txt` | Allows all crawlers, references sitemap |
+| `sitemap.xml` | `https://veratype.ai/sitemap.xml` | Lists `/` and `/privacy.html`; **update `lastmod` dates when pages change** (currently stale at 2026-03-22) |
 
 ## Contact Form
 
