@@ -50,13 +50,7 @@
         "Student privacy protection",
         "Educator dashboard"
       ],
-      "screenshot": "https://veratype.ai/og-image.png",
-      "installUrl": "https://chromewebstore.google.com/detail/dfjbbmkhmiplmnpcpoeijcimiajknmea",
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "5",
-        "ratingCount": "1"
-      }
+      "installUrl": "https://chromewebstore.google.com/detail/dfjbbmkhmiplmnpcpoeijcimiajknmea"
     },
     {
       "@context": "https://schema.org",
@@ -1000,9 +994,20 @@
     .footer-bottom-links a:hover { color: #94a3b8; }
 
     /* ─── RESPONSIVE ──────────────────────────────────── */
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+      color: var(--navy);
+    }
+
     @media (max-width: 960px) {
       nav { padding: 0 24px; }
       .nav-links { display: none; }
+      .nav-toggle { display: block; }
+      .nav-right .btn-ghost { display: none; }
       .hero { flex-direction: column; padding: 60px 24px 72px; gap: 48px; }
       .hero-visual { display: flex; justify-content: center; }
       .overlay-mock-2 { display: none; }
@@ -1016,6 +1021,28 @@
       .cta-section { padding: 64px 24px; }
       footer { padding: 48px 24px 32px; }
     }
+
+    .mobile-menu {
+      display: none;
+      position: absolute;
+      top: 68px;
+      left: 0;
+      right: 0;
+      background: var(--white);
+      border-bottom: 1px solid var(--gray-200);
+      padding: 16px 24px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+      z-index: 99;
+    }
+    .mobile-menu.open { display: flex; flex-direction: column; gap: 12px; }
+    .mobile-menu a {
+      color: var(--gray-600);
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 500;
+      padding: 8px 0;
+    }
+    .mobile-menu a:hover { color: var(--navy); }
 
     @media (max-width: 600px) {
       .features-grid { grid-template-columns: 1fr; }
@@ -1047,8 +1074,17 @@
     <div class="nav-right">
       <button type="button" class="btn-ghost" id="open-modal-nav">Ask a question</button>
       <a href="https://chromewebstore.google.com/detail/dfjbbmkhmiplmnpcpoeijcimiajknmea" class="btn-blue" target="_blank" rel="noopener">Add to Chrome</a>
+      <button type="button" class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
     </div>
   </nav>
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="#how-it-works">How it works</a>
+    <a href="#features">Privacy & features</a>
+    <a href="privacy.html">Privacy policy</a>
+    <a href="#" id="open-modal-mobile">Ask a question</a>
+  </div>
 
   <!-- HERO -->
   <main id="main">
@@ -1118,23 +1154,23 @@
     <div class="logos-label">Works wherever your students write</div>
     <div class="logos-row">
       <div class="logo-pill">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="#4285F4"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="#4285F4" aria-hidden="true"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
         Google Docs
       </div>
       <div class="logo-pill">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="#2B579A"><path d="M23.004 1.5q.41 0 .703.293t.293.703v19.008q0 .41-.293.703t-.703.293H6.996q-.41 0-.703-.293T6 21.504V18H.996q-.41 0-.703-.293T0 17.004V6.996q0-.41.293-.703T.996 6H6V2.496q0-.41.293-.703t.703-.293zM6.035 11.203l1.442 4.735h1.64l1.57-7.876H9.036l-.937 4.653-1.325-4.5H5.38l-1.406 4.523-.938-4.676H1.312l1.57 7.876h1.641zM22.5 21v-3h-15v3zm0-4.5v-3.75h-15v3.75zm0-5.25V7.5h-15v3.75z"/></svg>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="#2B579A" aria-hidden="true"><path d="M23.004 1.5q.41 0 .703.293t.293.703v19.008q0 .41-.293.703t-.703.293H6.996q-.41 0-.703-.293T6 21.504V18H.996q-.41 0-.703-.293T0 17.004V6.996q0-.41.293-.703T.996 6H6V2.496q0-.41.293-.703t.703-.293zM6.035 11.203l1.442 4.735h1.64l1.57-7.876H9.036l-.937 4.653-1.325-4.5H5.38l-1.406 4.523-.938-4.676H1.312l1.57 7.876h1.641zM22.5 21v-3h-15v3zm0-4.5v-3.75h-15v3.75zm0-5.25V7.5h-15v3.75z"/></svg>
         Word Online
       </div>
       <div class="logo-pill">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
         Higher Education
       </div>
       <div class="logo-pill">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
         K–12 Schools
       </div>
       <div class="logo-pill">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
         Independent Schools
       </div>
     </div>
@@ -1325,7 +1361,7 @@
       <div class="footer-col">
         <h4>Contact</h4>
         <ul>
-          <li><a href="mailto:hello@veratype.ai">hello@veratype.ai</a></li>
+          <li><a href="mailto:support@veratype.ai">support@veratype.ai</a></li>
         </ul>
       </div>
     </div>
@@ -1361,10 +1397,29 @@
     document.getElementById('open-modal-footer').addEventListener('click', function(e) {
       e.preventDefault(); openModal();
     });
+    document.getElementById('open-modal-mobile').addEventListener('click', function(e) {
+      e.preventDefault();
+      document.getElementById('mobile-menu').classList.remove('open');
+      openModal();
+    });
     document.getElementById('modal-close').addEventListener('click', closeModal);
     modal.addEventListener('click', function(e) { if (e.target === modal) closeModal(); });
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape' && !modal.hasAttribute('hidden')) closeModal();
+    });
+
+    // Mobile menu toggle
+    var navToggle = document.getElementById('nav-toggle');
+    var mobileMenu = document.getElementById('mobile-menu');
+    navToggle.addEventListener('click', function() {
+      var open = mobileMenu.classList.toggle('open');
+      navToggle.setAttribute('aria-expanded', open);
+    });
+    mobileMenu.querySelectorAll('a[href^="#"]').forEach(function(link) {
+      link.addEventListener('click', function() {
+        mobileMenu.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'false');
+      });
     });
 
     function validate() {
@@ -1394,7 +1449,7 @@
           this.innerHTML = '<p style="text-align:center;color:var(--blue);font-weight:700;font-size:16px;padding:24px 0">Message sent \u2014 we\u2019ll be in touch!</p>';
         } else {
           var data = await res.json().catch(function() { return {}; });
-          modalStatus.textContent = data.error || 'Something went wrong. Please try again.';
+          modalStatus.textContent = data.detail || 'Something went wrong. Please try again.';
           submitBtn.disabled = false;
           submitBtn.textContent = 'Send question';
         }

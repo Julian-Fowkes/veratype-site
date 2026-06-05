@@ -20,7 +20,7 @@ Marketing site for [veratype.ai](https://veratype.ai), deployed via Cloudflare W
 
 ## Contact Form
 
-The contact modal on `index.html` POSTs directly to `https://api.veratype.ai/contact`. The site itself does not handle the submission — the backend forwards it via Resend to `julian@veratype.ai`.
+The contact modal on `index.html` POSTs directly to `https://api.veratype.ai/contact`. The site itself does not handle the submission — the backend forwards it via Resend to `support@veratype.ai`.
 
 ## Deployment
 
