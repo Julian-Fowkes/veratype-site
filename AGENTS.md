@@ -9,7 +9,6 @@ Live infrastructure state and gotchas for AI agents working on this repo. Comple
 - **URL:** `https://veratype.ai`
 - **Hosting:** Cloudflare Workers (static assets) — auto-deploys on push to `main` via Cloudflare Git integration
 - **Workers project name:** `veratype-site`
-- **KV namespace:** `WAITLIST` (id: `f4aa0140b3e048548f27efdb51b29c53`) — legacy waitlist storage, no longer written to
 - **Compatibility date:** `2026-04-27`
 
 ## Pages
@@ -28,11 +27,6 @@ The contact modal on `index.html` POSTs directly to `https://api.veratype.ai/con
 1. User submits email + question on `veratype.ai`
 2. `index.html` JS POSTs to `https://api.veratype.ai/contact`
 3. Backend (`routers/contact.py`) forwards via Resend to `julian@veratype.ai`
-
-## Dead Code
-
-- **`functions/api/notify.js`** — legacy Pages Function from when the site ran a waitlist. Writes emails to the `WAITLIST` KV namespace. Not called by anything in the current site. Do not add new Pages Functions here — they do not run in Cloudflare Workers static assets mode (only in Pages mode).
-- **`WAITLIST` KV namespace** — bound in `wrangler.toml` but never written to. Can be removed from `wrangler.toml` and the Cloudflare dashboard when convenient.
 
 ---
 

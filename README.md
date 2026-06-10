@@ -6,8 +6,6 @@ Marketing site for [veratype.ai](https://veratype.ai), deployed via Cloudflare W
 
 - Static HTML/CSS — no build step, no npm
 - Cloudflare Workers (Git integration) — auto-deploys on push to `main`
-- `functions/api/notify.js` — legacy Pages Function (dead code, no longer called)
-- KV namespace `WAITLIST` — legacy waitlist storage (no longer in use)
 
 ## Pages
 
@@ -34,4 +32,3 @@ Push to `main` triggers an automatic deploy via Cloudflare's Git integration run
 
 - **Do NOT remove `[assets]` from `wrangler.toml`** — wrangler will fail with "Missing entry-point" error.
 - **`privacy.html` must stay live** — linked directly from the published Chrome extension. Removing or renaming it breaks the link for all installed users.
-- The `functions/` directory is dead code — do not add new Pages Functions here, they won't run in Workers static assets mode.

@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>For Schools — Compliance & Security | Veratype</title>
+  <meta name="description" content="Veratype's compliance posture, security measures, and student privacy commitments for schools and districts." />
+  <link rel="canonical" href="https://veratype.ai/trust.html" />
+  <meta property="og:title" content="For Schools — Compliance & Security | Veratype" />
+  <meta property="og:description" content="Veratype's compliance posture, security measures, and student privacy commitments for schools and districts." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://veratype.ai/trust.html" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="For Schools — Compliance & Security | Veratype" />
+  <meta name="twitter:description" content="Veratype's compliance posture, security measures, and student privacy commitments for schools and districts." />
+  <meta name="theme-color" content="#0a1628" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:     #0a1628;
+      --blue:     #0056d6;
+      --blue-hover:#0044b0;
+      --blue-light:#e8f0fe;
+      --gray-50:  #f8f9fc;
+      --gray-100: #f1f3f7;
+      --gray-200: #e2e6ee;
+      --gray-400: #9aa3b2;
+      --gray-600: #5a6478;
+      --text:     #1a2236;
+      --white:    #ffffff;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--white);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 48px;
+      height: 68px;
+      background: var(--white);
+      border-bottom: 1px solid var(--gray-200);
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+    }
+
+    .nav-logo {
+      font-size: 22px;
+      font-weight: 900;
+      color: var(--navy);
+      text-decoration: none;
+      letter-spacing: -0.5px;
+    }
+    .nav-logo span { color: var(--blue); }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--gray-600);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.15s;
+    }
+    .nav-links a:hover { color: var(--navy); }
+
+    .nav-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--gray-600);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.15s;
+    }
+    .nav-back:hover { color: var(--navy); }
+
+    /* HERO */
+    .page-hero {
+      padding: 80px 24px 64px;
+      text-align: center;
+      border-bottom: 1px solid var(--gray-200);
+      background: var(--navy);
+    }
+
+    .page-hero h1 {
+      font-size: clamp(32px, 5vw, 56px);
+      font-weight: 900;
+      letter-spacing: -1.5px;
+      margin-bottom: 12px;
+      color: #fff;
+    }
+
+    .page-hero p {
+      color: #64748b;
+      font-size: 16px;
+    }
+
+    /* CONTENT */
+    .content {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 72px 24px 100px;
+    }
+
+    .policy-section {
+      margin-bottom: 56px;
+      scroll-margin-top: 100px;
+    }
+
+    .policy-section h2 {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.3px;
+      color: var(--navy);
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--gray-200);
+    }
+
+    .policy-section h3 {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--navy);
+      margin: 28px 0 12px;
+    }
+
+    .policy-section p {
+      color: var(--gray-600);
+      font-size: 15px;
+      margin-bottom: 16px;
+      line-height: 1.75;
+    }
+
+    .policy-section ul, .policy-section ol {
+      padding-left: 20px;
+      margin-bottom: 16px;
+    }
+
+    .policy-section li {
+      color: var(--gray-600);
+      font-size: 15px;
+      margin-bottom: 10px;
+      line-height: 1.7;
+    }
+
+    .policy-section strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .policy-section table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 16px;
+      font-size: 14px;
+    }
+
+    .policy-section th, .policy-section td {
+      text-align: left;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--gray-200);
+      color: var(--gray-600);
+    }
+
+    .policy-section th {
+      font-weight: 700;
+      color: var(--navy);
+      background: var(--gray-50);
+    }
+
+    .highlight-box {
+      background: var(--blue-light);
+      border: 1px solid #bfdbfe;
+      border-radius: 10px;
+      padding: 18px 22px;
+      margin-bottom: 16px;
+    }
+
+    .highlight-box p {
+      color: #1e40af;
+      margin: 0;
+      font-size: 14px;
+    }
+
+    .cta-box {
+      background: var(--blue-light);
+      border: 1px solid #bfdbfe;
+      border-radius: 12px;
+      padding: 32px;
+      text-align: center;
+    }
+
+    .cta-box p {
+      color: var(--gray-600);
+      margin-bottom: 16px;
+    }
+
+    .cta-box a {
+      display: inline-block;
+      padding: 12px 24px;
+      background: var(--blue);
+      border-radius: 6px;
+      color: #fff;
+      font-size: 15px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+    .cta-box a:hover { background: var(--blue-hover); }
+
+    /* FOOTER */
+    footer {
+      background: var(--navy);
+      padding: 64px 48px 40px;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 56px;
+    }
+
+    .footer-brand h3 {
+      font-size: 20px;
+      font-weight: 900;
+      color: #fff;
+      letter-spacing: -0.5px;
+      margin-bottom: 12px;
+    }
+    .footer-brand h3 span { color: #60a5fa; }
+
+    .footer-brand p {
+      font-size: 14px;
+      color: #64748b;
+      line-height: 1.7;
+      max-width: 280px;
+    }
+
+    .footer-col h4 {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #475569;
+      margin-bottom: 18px;
+    }
+
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+
+    .footer-col a {
+      color: #64748b;
+      text-decoration: none;
+      font-size: 14px;
+      transition: color 0.15s;
+    }
+    .footer-col a:hover { color: #cbd5e1; }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding-top: 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-bottom p { font-size: 13px; color: #475569; }
+
+    .footer-bottom-links {
+      display: flex;
+      gap: 20px;
+      list-style: none;
+    }
+
+    .footer-bottom-links a {
+      color: #475569;
+      text-decoration: none;
+      font-size: 13px;
+      transition: color 0.15s;
+    }
+    .footer-bottom-links a:hover { color: #94a3b8; }
+
+    .skip-link {
+      position: absolute;
+      top: -100%;
+      left: 16px;
+      background: var(--blue);
+      color: #fff;
+      padding: 8px 16px;
+      border-radius: 0 0 6px 6px;
+      font-size: 14px;
+      font-weight: 600;
+      z-index: 200;
+      text-decoration: none;
+    }
+    .skip-link:focus { top: 0; }
+
+    @media (max-width: 960px) {
+      nav { padding: 0 24px; }
+      .nav-links { display: none; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+      footer { padding: 48px 24px 32px; }
+    }
+
+    @media (max-width: 600px) {
+      nav { padding: 0 20px; }
+      footer { padding: 32px 20px; }
+      .footer-top { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <a href="#content" class="skip-link">Skip to content</a>
+
+  <nav>
+    <div class="nav-left">
+      <a href="index.html" class="nav-logo">Vera<span>type</span></a>
+      <ul class="nav-links">
+        <li><a href="index.html#how-it-works">How it works</a></li>
+        <li><a href="index.html#features">Privacy & features</a></li>
+        <li><a href="index.html#faq">FAQ</a></li>
+        <li><a href="privacy.html">Privacy policy</a></li>
+        <li><a href="trust.html">For schools</a></li>
+      </ul>
+    </div>
+    <a href="index.html" class="nav-back">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      Back to home
+    </a>
+  </nav>
+
+  <div class="page-hero">
+    <h1>For Schools</h1>
+    <p>Compliance, security, and student privacy commitments</p>
+  </div>
+
+  <div class="content" id="content" role="main">
+
+    <div class="policy-section" id="student-privacy">
+      <h2>1. Student privacy commitments</h2>
+      <p>Veratype is built around three core privacy guarantees:</p>
+      <ul>
+        <li><strong>No content captured.</strong> The extension never reads, stores, or transmits the text students write. We observe only behavioural metadata — timing, paste counts, editing patterns.</li>
+        <li><strong>No plaintext keys.</strong> Key-pair timing data is stored only as irreversible one-way hashes. Neither Veratype nor any third party can reconstruct which keys were pressed.</li>
+        <li><strong>No activity tracking outside the editor.</strong> We record when the writing tab loses and regains focus (to measure session continuity), but never capture which site or application was used in the meantime.</li>
+      </ul>
+    </div>
+
+    <div class="policy-section" id="regulatory">
+      <h2>2. Regulatory posture</h2>
+      <ul>
+        <li><strong>FERPA:</strong> Veratype operates as a "school official" under FERPA, processing student data solely at the direction of and for the benefit of the educational institution. We use data only for the purposes defined in our agreement with the school.</li>
+        <li><strong>COPPA:</strong> Consent for students under 13 flows through the educational institution. The school is responsible for obtaining any necessary parental consent; Veratype does not collect personal information directly from children without institutional authorization.</li>
+        <li><strong>State student-data-privacy laws:</strong> We are prepared to sign Data Privacy Agreements (DPAs) consistent with state-specific requirements. Contact us for DPA negotiation.</li>
+      </ul>
+      <div class="highlight-box">
+        <p><strong>Note:</strong> These are operational commitments reflecting how we build and operate Veratype. They are not legal certifications. We encourage schools to review our <a href="privacy.html" style="color:#1e40af;">privacy policy</a> and request a DPA if required by their jurisdiction.</p>
+      </div>
+    </div>
+
+    <div class="policy-section" id="security">
+      <h2>3. Security measures</h2>
+      <ul>
+        <li><strong>Encryption in transit:</strong> All data transmitted between the extension, our API, and the educator dashboard is encrypted using TLS.</li>
+        <li><strong>Encryption at rest:</strong> Database storage is encrypted at rest using AWS-managed keys.</li>
+        <li><strong>IAM-restricted private database:</strong> The PostgreSQL database is hosted in a private subnet with no public internet access, secured by IAM roles and security groups.</li>
+        <li><strong>Session-cookie authentication:</strong> Educator and student sessions are authenticated via secure, HTTP-only cookies.</li>
+        <li><strong>Hashed tokens:</strong> Sensitive tokens (password reset, verification) are stored as one-way hashes.</li>
+      </ul>
+    </div>
+
+    <div class="policy-section" id="subprocessors">
+      <h2>4. Subprocessor list</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Provider</th>
+            <th>Purpose</th>
+            <th>Region</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Amazon Web Services</strong></td>
+            <td>Hosting, database (RDS PostgreSQL), and AI processing (Bedrock)</td>
+            <td>us-east-1</td>
+          </tr>
+          <tr>
+            <td><strong>Resend</strong></td>
+            <td>Transactional email (account verification, educator invites, password resets, weekly digests, contact-form forwarding)</td>
+            <td>US</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="policy-section" id="data-deletion">
+      <h2>5. Data deletion</h2>
+      <p>When a user's data is deleted — by request or by account deletion — all identifiable data (sessions, raw behavioural events, scores, typing-rhythm baselines, and account information) is permanently removed. We retain only de-identified statistical feature summaries that contain no user, document, class, or school references and cannot be re-linked to any individual.</p>
+      <p>Deletion requests are honored within 30 days. Districts may request bulk deletion of all student data at contract end.</p>
+    </div>
+
+    <div class="policy-section" id="contact-dpa">
+      <h2>6. Contact for DPAs</h2>
+      <p>Ready to roll out Veratype across your school or district? Need a signed Data Privacy Agreement?</p>
+      <div class="cta-box">
+        <p>Reach out and we will work with your team to get everything in place.</p>
+        <a href="mailto:support@veratype.ai">Contact support@veratype.ai</a>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <h3>Vera<span>type</span></h3>
+        <p>Writing behaviour scoring for Google Docs and Word Online. 18 signals, zero content read.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Product</h4>
+        <ul>
+          <li><a href="index.html#how-it-works">How it works</a></li>
+          <li><a href="index.html#features">Features</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="trust.html">For Schools</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:support@veratype.ai">support@veratype.ai</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Veratype. All rights reserved.</p>
+      <ul class="footer-bottom-links">
+        <li><a href="privacy.html">Privacy Policy</a></li>
+        <li><a href="trust.html">For Schools</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <!-- Cloudflare Web Analytics — replace BEACON_TOKEN with your token from the Cloudflare dashboard -->
+  <!-- <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "BEACON_TOKEN"}'></script> -->
+
+</body>
+</html>

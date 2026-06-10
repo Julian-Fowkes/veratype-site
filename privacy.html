@@ -1,3 +1,4 @@
+<!-- TODO(deploy-after-digraph-hashing): Do not deploy these copy changes until the digraph hashing extension update has shipped. -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,6 +14,7 @@
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Privacy Policy | Veratype" />
   <meta name="twitter:description" content="Veratype Privacy Policy: how we collect, use, and protect your data." />
+  <meta name="theme-color" content="#0a1628" />
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -251,7 +253,7 @@
 
   <div class="page-hero">
     <h1>Privacy Policy</h1>
-    <p>Last updated: 22 March 2026</p>
+    <p>Last updated: 9 June 2026</p>
   </div>
 
   <div class="content" id="content" role="main">
@@ -291,17 +293,22 @@
         <li><strong>Deletion count:</strong> the number of delete/backspace key presses in a session.</li>
         <li><strong>DOM mutation signals:</strong> aggregate counts of characters inserted or deleted in the document editor, used as a cross-check against keystroke data.</li>
         <li><strong>Session metadata:</strong> a randomly generated session ID, session start time, session duration, the document ID (from Google Docs or Word Online), and the document title.</li>
+        <li><strong>Key-pair timing (hashed):</strong> the time between consecutive key presses, associated with a one-way-hashed identifier of the key pair. The hash cannot be reversed to recover which keys were pressed. Used to build each student's personal typing-rhythm baseline.</li>
+        <li><strong>Modifier key usage:</strong> whether Ctrl, Cmd, Shift, or Alt was held during a keystroke (used to detect copy-paste-heavy workflows).</li>
+        <li><strong>Tab visibility periods:</strong> timestamps for when the Google Docs / Word Online tab was hidden and when it became visible again. We record only that the tab lost focus — never which site or application was used in the meantime.</li>
+        <li><strong>Timezone offset:</strong> your browser's UTC offset, used to interpret session start times in local time.</li>
+        <li><strong>Account information:</strong> the email address a student provides at registration, consent timestamp, and class enrollment (class join codes entered by the student).</li>
       </ul>
-      <p>This data is associated with a user account created by the educator who installed and configured Veratype for their institution.</p>
+      <p>This data is associated with the account the student creates when registering the extension, and with any class the student joins via a class code.</p>
     </div>
 
     <div class="policy-section" id="what-we-dont-collect">
       <h2>3. What we do NOT collect</h2>
       <ul>
         <li>The text you type. We never record the content of your writing.</li>
-        <li>The specific keys you press. Only broad categories (e.g. "alphabetic key") are recorded.</li>
+        <li>The specific keys you press. Keystrokes are recorded as broad categories (e.g. 'alphabetic key'), and key-pair rhythm is stored only as irreversible hashes — neither can be used to reconstruct what was written.</li>
         <li>The content of pasted text. Only the character count is captured.</li>
-        <li>Browsing history, other tabs, or any activity outside of Google Docs and Word Online.</li>
+        <li>Browsing history, the content or identity of other tabs, or what you do outside of Google Docs and Word Online. (We do record when the writing tab loses and regains focus — see Section 2 — but never where you went.)</li>
         <li>Passwords, form data, or any other sensitive input.</li>
         <li>Camera, microphone, or any device sensor data.</li>
       </ul>
@@ -337,12 +344,16 @@
         <li>Database access is restricted by IAM roles and security groups, with no public internet access to the database.</li>
         <li>Application-level authentication is required to access any session data.</li>
       </ul>
+      <h3 style="font-size:17px;font-weight:700;color:var(--navy);margin:28px 0 12px;">Service providers</h3>
+      <ul>
+        <li><strong>Amazon Web Services (us-east-1):</strong> hosting, database (RDS PostgreSQL), and AI processing. Behavioural signal summaries and scores (never raw keystroke streams) are processed by Amazon Bedrock to generate educator-facing report text and weekly digests.</li>
+        <li><strong>Resend:</strong> transactional email delivery (account verification, educator invites, password resets, weekly digests, contact-form forwarding). Resend processes the recipient email address and message content.</li>
+      </ul>
     </div>
 
     <div class="policy-section" id="retention">
       <h2>7. Data retention</h2>
-      <p>Session data is retained for as long as the associated educator account is active. If an account is deleted, all associated session data is permanently removed within 30 days.</p>
-      <p>You may request deletion of your data at any time by contacting us (see Section 11).</p>
+      <p>Session data is retained while the associated account is active. When a user's data is deleted — by request or by account deletion — all identifiable data (sessions, raw behavioural events, scores, typing-rhythm baselines, and account information) is permanently removed. We retain only de-identified statistical feature summaries that contain no user, document, class, or school references and cannot be re-linked to any individual; these are used solely to improve scoring accuracy. Deletion requests are honored within 30 days (see Section 11).</p>
     </div>
 
     <div class="policy-section" id="your-rights">
