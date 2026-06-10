@@ -8,23 +8,24 @@
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    :root{--navy:#0a1628;--blue:#0056d6;--blue-hover:#0044b0;--gray-200:#e2e6ee;--gray-600:#5a6478;--white:#ffffff}
-    body{font-family:'Inter',sans-serif;background:var(--white);color:#1a2236;line-height:1.6}
-    nav{display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:68px;background:var(--white);border-bottom:1px solid var(--gray-200)}
-    .nav-logo{font-size:22px;font-weight:900;color:var(--navy);text-decoration:none;letter-spacing:-0.5px}
-    .nav-logo span{color:var(--blue)}
-    .hero{background:var(--navy);padding:100px 24px;text-align:center}
-    .hero h1{font-size:clamp(32px,5vw,56px);font-weight:900;color:#fff;letter-spacing:-1.5px;margin-bottom:16px}
-    .hero p{color:#94a3b8;font-size:18px;margin-bottom:32px}
-    .hero a{display:inline-block;padding:14px 28px;background:var(--blue);border-radius:6px;color:#fff;font-size:15px;font-weight:700;text-decoration:none;transition:background 0.15s}
-    .hero a:hover{background:var(--blue-hover)}
-    footer{background:var(--navy);border-top:1px solid rgba(255,255,255,0.06);padding:32px 48px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
-    .footer-logo{font-size:18px;font-weight:900;color:#fff;letter-spacing:-0.3px}
-    .footer-logo span{color:#60a5fa}
-    .footer-copy{font-size:13px;color:#475569}
+    :root{--ink:#0B1220;--ink-soft:#1C2A42;--paper:#FAFBFD;--pulse:#2563FF;--pulse-deep:#1D4FD8;--line:#DCE2EE;--line-dark:rgba(255,255,255,0.10);--mono-dim:#6B7690}
+    body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--paper);color:var(--ink);line-height:1.6}
+    :focus-visible{outline:2px solid var(--pulse);outline-offset:2px}
+    nav{display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:68px;background:rgba(250,251,253,0.85);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+    .nav-logo{font-family:'Bricolage Grotesque',sans-serif;font-size:22px;font-weight:800;color:var(--ink);text-decoration:none;letter-spacing:-0.02em}
+    .nav-logo span{color:var(--pulse)}
+    .hero{background:var(--ink);padding:100px 24px;text-align:center}
+    .hero h1{font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(32px,5vw,56px);font-weight:800;color:#fff;letter-spacing:-0.02em;margin-bottom:16px}
+    .hero p{color:var(--mono-dim);font-size:17px;margin-bottom:32px}
+    .hero a{display:inline-block;padding:14px 28px;background:var(--pulse);border-radius:8px;color:#fff;font-size:15px;font-weight:600;text-decoration:none;transition:background 0.15s,transform 0.15s}
+    .hero a:hover{background:var(--pulse-deep);transform:translateY(-1px)}
+    footer{background:var(--ink);border-top:1px solid var(--line-dark);padding:32px 48px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+    .footer-logo{font-family:'Bricolage Grotesque',sans-serif;font-size:18px;font-weight:800;color:#fff;letter-spacing:-0.02em}
+    .footer-logo span{color:var(--pulse)}
+    .footer-copy{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.04em;color:var(--mono-dim)}
   </style>
 </head>
 <body>
