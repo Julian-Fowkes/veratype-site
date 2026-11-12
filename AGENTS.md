@@ -23,7 +23,7 @@ Live infrastructure state and gotchas for AI agents working on this repo. Comple
 | `_headers` | — | Security headers for every path, including the Content-Security-Policy |
 | `favicon.svg`, `favicon-32.png`, `favicon-16.png`, `og-image.png` | — | Company logo icons (shared with the product — change both together) and social-share image |
 | `robots.txt` | `https://veratype.ai/robots.txt` | Allows all crawlers, references the sitemap |
-| `sitemap.xml` | `https://veratype.ai/sitemap.xml` | `/`, `/privacy.html`, `/trust.html` — update `lastmod` when a page changes (last: 2026-11-11) |
+| `sitemap.xml` | `https://veratype.ai/sitemap.xml` | `/`, `/privacy`, `/trust` (the addresses that answer 200, not the `.html` ones that redirect) — update `lastmod` when a page changes (last: 2026-11-12) |
 
 ## Contact Form
 
@@ -42,7 +42,7 @@ The contact modal on `index.html` POSTs directly to `https://api.veratype.ai/con
 - **No build step** — the site is plain HTML/CSS/JS. No npm install, no bundler. Edit files and push.
 - **`privacy.html` must stay live** — it is linked directly from the published Chrome extension. Removing or renaming it breaks the link for all installed extension users.
 - **`.assetsignore` keeps repo files off the site.** `wrangler.toml` serves the whole repo root (`directory = "."`), so `AGENTS.md`, `README.md` and `wrangler.toml` were publicly downloadable until 2026-11-11. Add any new non-site file (docs, scripts, config) to `.assetsignore`.
-- **`.html` URLs redirect.** Cloudflare answers `/privacy.html` and `/trust.html` with a 307 to `/privacy` and `/trust`. Both work; keep the `.html` files and the links to them.
+- **`.html` URLs redirect.** Cloudflare answers `/privacy.html` and `/trust.html` with a 307 to `/privacy` and `/trust`. Both work, and the `.html` files must stay (the extension links to `privacy.html`). The site's own links, canonical tags and sitemap use the short addresses, because a canonical or sitemap entry that redirects sends search engines a mixed signal.
 - **Cloudflare Web Analytics vs the CSP.** Cloudflare injects its analytics beacon (`static.cloudflareinsights.com`), and the CSP in `_headers` blocks it, so every page logs a console error. It is harmless. Either turn off Web Analytics in the Cloudflare dashboard or add that host to `script-src` (and `connect-src`) in `_headers`.
 - **Privacy and trust claims track the product.** These pages state what the extension and backend actually do (e.g. "Nothing before registration", "Only the class the student chose", the per-session typing-rhythm summary). Change them together with the backend repo (`Julian-Fowkes/veratype`), and check before merging that the live backend and the extension in the store really behave that way.
 - **Copy rules:** say "verification, not detection" — Veratype shows how a document was produced; it does not claim to detect AI-generated text. 19 behavioural signals.
