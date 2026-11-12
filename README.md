@@ -19,7 +19,7 @@ Marketing site for [veratype.ai](https://veratype.ai), deployed via Cloudflare W
 | `_headers` | — | Security headers for every path, including the Content-Security-Policy |
 | `favicon.svg`, `favicon-32.png`, `favicon-16.png`, `og-image.png` | — | Company logo icons (shared with the product — change both together) and social-share image |
 | `robots.txt` | `https://veratype.ai/robots.txt` | Allows all crawlers, references the sitemap |
-| `sitemap.xml` | `https://veratype.ai/sitemap.xml` | `/`, `/privacy.html`, `/trust.html` — update `lastmod` when a page changes (last: 2026-11-11) |
+| `sitemap.xml` | `https://veratype.ai/sitemap.xml` | `/`, `/privacy`, `/trust` (the addresses that answer 200, not the `.html` ones that redirect) — update `lastmod` when a page changes (last: 2026-11-12) |
 
 ## Contact Form
 
