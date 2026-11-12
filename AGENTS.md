@@ -51,6 +51,7 @@ The contact modal on `index.html` POSTs directly to `https://api.veratype.ai/con
 
 ## Recent Changes (November 2026)
 
+- **SEO (2026-11-12):** clean addresses in canonicals, sitemap and links (#6); `WebSite` structured data (#6); Google Search Console verification tag (#8, keep it); four FAQ entries in search wording, ChatGPT / copy and paste / version history / can a score be wrong (#7, `f4f161b`, merged as written); dead analytics placeholder and unused styles removed (#9). Cloudflare's March autoconfig PR (#1) was closed: the site deploys with `wrangler.toml`, and a second `wrangler.jsonc` could break that.
 - **Privacy policy: the class rule** (PR #5, `04b30c1`, 2026-11-12, merged after the backend change was live): each class a student chose for a document sees it; a class keeps a document once chosen. No account-holder email was sent; the wording has not had legal review.
 - **Logo favicon** (PR #4, `283593b`, 2026-11-12): the company logo — nine white bars hanging from one line in a V, the fourth blue, on ink — replaces the two-tone V. Pages link `favicon-32.png` and a five-bar `favicon-16.png` (nine bars blur at 16 px); `favicon.svg` is the logo too. Same files as the product's dashboard and extension.
 - **Favicon** (PR #3, `62a7457`, 2026-11-12): the two-tone V mark (white and blue `#2563FF` strokes on the ink colour, drawn as paths), the same mark as the product's dashboard, sign-in pages and extension icon. The old favicon drew a letter V in a font the browser might not have, in an off-palette blue.
