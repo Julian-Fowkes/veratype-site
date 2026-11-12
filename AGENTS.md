@@ -21,7 +21,7 @@ Live infrastructure state and gotchas for AI agents working on this repo. Comple
 | `404.html` | — | Not-found page (not in the sitemap) |
 | `site.js` | — | Shared script (CSP is `script-src 'self'`: no inline scripts) |
 | `_headers` | — | Security headers for every path, including the Content-Security-Policy |
-| `favicon.svg`, `og-image.png` | — | Two-tone V mark (shared with the product — change both together) and social-share image |
+| `favicon.svg`, `favicon-32.png`, `favicon-16.png`, `og-image.png` | — | Company logo icons (shared with the product — change both together) and social-share image |
 | `robots.txt` | `https://veratype.ai/robots.txt` | Allows all crawlers, references the sitemap |
 | `sitemap.xml` | `https://veratype.ai/sitemap.xml` | `/`, `/privacy.html`, `/trust.html` — update `lastmod` when a page changes (last: 2026-11-11) |
 
@@ -51,6 +51,7 @@ The contact modal on `index.html` POSTs directly to `https://api.veratype.ai/con
 
 ## Recent Changes (November 2026)
 
+- **Logo favicon** (PR #4, `283593b`, 2026-11-12): the company logo — nine white bars hanging from one line in a V, the fourth blue, on ink — replaces the two-tone V. Pages link `favicon-32.png` and a five-bar `favicon-16.png` (nine bars blur at 16 px); `favicon.svg` is the logo too. Same files as the product's dashboard and extension.
 - **Favicon** (PR #3, `62a7457`, 2026-11-12): the two-tone V mark (white and blue `#2563FF` strokes on the ink colour, drawn as paths), the same mark as the product's dashboard, sign-in pages and extension icon. The old favicon drew a letter V in a font the browser might not have, in an off-palette blue.
 - **Site copy, privacy policy and trust page for extension 0.2.5** (PR #2, `a0e236a`, merged 2026-11-11 and live the same night): the FAQ answer to "Does Veratype detect AI-generated writing?" is now "No, and it does not try to"; key-pair timing is described as a per-session summary under one-way hashes; copy/cut events and unexplained Google Docs growth are listed; "Nothing before registration" and "Only the class the student chose"; the 12-month retention is stated once; Cloudflare and Google Fonts added as subprocessors; "18 signals" corrected to 19 in the remaining places; dashboard address `api.veratype.ai/dashboard`; `404.html` removed from the sitemap.
 - **Timing:** this was merged before extension 0.2.5 reached the Chrome Web Store (the store still serves 0.2.3). The backend makes "Nothing before registration" true regardless: `ACCEPT_ANONYMOUS_SESSIONS=false` has been set in App Runner since 2026-11-12, so unregistered batches are refused.

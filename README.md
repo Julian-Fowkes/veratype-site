@@ -17,7 +17,7 @@ Marketing site for [veratype.ai](https://veratype.ai), deployed via Cloudflare W
 | `404.html` | — | Not-found page (not in the sitemap) |
 | `site.js` | — | Shared script (CSP is `script-src 'self'`: no inline scripts) |
 | `_headers` | — | Security headers for every path, including the Content-Security-Policy |
-| `favicon.svg`, `og-image.png` | — | Two-tone V mark (shared with the product — change both together) and social-share image |
+| `favicon.svg`, `favicon-32.png`, `favicon-16.png`, `og-image.png` | — | Company logo icons (shared with the product — change both together) and social-share image |
 | `robots.txt` | `https://veratype.ai/robots.txt` | Allows all crawlers, references the sitemap |
 | `sitemap.xml` | `https://veratype.ai/sitemap.xml` | `/`, `/privacy.html`, `/trust.html` — update `lastmod` when a page changes (last: 2026-11-11) |
 
