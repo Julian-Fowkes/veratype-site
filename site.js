@@ -127,7 +127,8 @@ document.getElementById('contact-form').addEventListener('submit', async functio
   // The typo sequence: type "writen", then backspace x2, then "tten"
   var sequence = [];
   var typoInsert = 'Know how it was writen';
-  var corrected = 'Know how it was written. Not what.';
+  // The pause comes after "written. ", just before "Not what."
+  var pauseAt = fullText.indexOf('Not');
 
   // Build character sequence with typo
   for (var i = 0; i < typoInsert.length; i++) {
@@ -136,8 +137,10 @@ document.getElementById('contact-form').addEventListener('submit', async functio
   // backspace x2 (delete "en" to go back to "writ")
   sequence.push({ type: 'delete' });
   sequence.push({ type: 'delete' });
-  // now type "tten. Not what."
-  var remainder = 'tten. Not what.';
+  // now type the rest: "writ" + "ten. Not what."
+  // (This was 'tten. Not what.', one "t" too many. Nobody saw "writtten"
+  // because the letters on screen came from the finished headline.)
+  var remainder = fullText.slice('Know how it was writ'.length);
   for (var j = 0; j < remainder.length; j++) {
     sequence.push({ type: 'char', char: remainder[j] });
   }
@@ -178,22 +181,26 @@ document.getElementById('contact-form').addEventListener('submit', async functio
     step++;
 
     if (action.type === 'delete') {
-      // Hide last visible char
+      // Hide last visible char, and put the final letter back in its place
       if (visibleCount > 0) {
         visibleCount--;
         spans[visibleCount].classList.remove('visible');
+        spans[visibleCount].textContent = fullText[visibleCount];
       }
       setTimeout(tick, 60 + Math.random() * 40);
     } else {
-      // Check for 650ms pause before "Not what."
-      // "Not" starts at index 20 in the final text
-      if (visibleCount === 20 && !pauseBeforeNot) {
+      // A 650ms pause before "Not what."
+      if (visibleCount === pauseAt && !pauseBeforeNot) {
         pauseBeforeNot = true;
         setTimeout(tick, 650);
         step--; // re-process this step after pause
         return;
       }
       if (visibleCount < spans.length) {
+        // Show the letter that is being typed, which for the typo is not the
+        // final one. (The spans hold the finished headline, so "writen" used
+        // to appear as "writte" and the mistake was never seen.)
+        spans[visibleCount].textContent = action.char;
         spans[visibleCount].classList.add('visible');
         visibleCount++;
       }
