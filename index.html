@@ -150,18 +150,6 @@
     }
 
     /* ─── TYPOGRAPHY ─────────────────────────────────── */
-    .font-display {
-      font-family: 'Bricolage Grotesque', sans-serif;
-      letter-spacing: -0.02em;
-    }
-
-    .font-mono {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-
     h1, h2, .section h2 {
       font-family: 'Bricolage Grotesque', sans-serif;
       letter-spacing: -0.02em;
@@ -255,16 +243,6 @@
       transition: color 0.15s ease-out;
     }
     .nav-links a:hover { color: var(--ink); }
-    .nav-links a.active::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: -6px;
-      height: 2px;
-      background: var(--pulse);
-      border-radius: 1px;
-    }
 
     .nav-right {
       display: flex;
@@ -341,9 +319,6 @@
 
     .hero-headline-wrap {
       position: relative;
-    }
-    .hero-headline-static {
-      visibility: visible;
     }
 
     .hero-sub {
@@ -1829,9 +1804,6 @@
 
   <script src="site.js"></script>
 
-  <!-- Cloudflare Web Analytics — token from: Cloudflare dashboard > Analytics > Web Analytics > Add site -->
-  <!-- TODO: replace BEACON_TOKEN below with your token, then remove this comment -->
-  <!-- <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "BEACON_TOKEN"}'></script> -->
 
 </body>
 </html>
