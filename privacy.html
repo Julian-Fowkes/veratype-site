@@ -283,7 +283,7 @@
 
   <div class="page-hero">
     <h1>Privacy Policy</h1>
-    <p>Last updated: 9 June 2026</p>
+    <p>Last updated: 11 November 2026</p>
   </div>
 
   <div class="content" id="content" role="main">
@@ -323,7 +323,9 @@
         <li><strong>Deletion count:</strong> the number of delete/backspace key presses in a session.</li>
         <li><strong>DOM mutation signals:</strong> aggregate counts of characters inserted or deleted in the document editor, used as a cross-check against keystroke data.</li>
         <li><strong>Session metadata:</strong> a randomly generated session ID, session start time, session duration, the document ID (from Google Docs or Word Online), and the document title.</li>
-        <li><strong>Key-pair timing (hashed):</strong> the time between consecutive key presses, associated with a one-way-hashed identifier of the key pair. The hash cannot be reversed to recover which keys were pressed. Used to build each student's personal typing-rhythm baseline.</li>
+        <li><strong>Key-pair timing (summarised and hashed):</strong> for common pairs of keys, how many times the pair occurred in a session and how quickly, stored under a one-way-hashed identifier of the pair. It is a summary, not a sequence: it does not record the order in which keys were pressed. Used to build each student's personal typing-rhythm baseline.</li>
+          <li><strong>Copy and cut events:</strong> that a copy or cut happened, so that moving your own text within a document is not mistaken for pasting from elsewhere. The comparison is made inside your browser; the copied text is never transmitted.</li>
+          <li><strong>Unexplained document growth (Google Docs):</strong> a count of lines that appeared without keyboard or clipboard input (for example voice typing). It is shown to the educator as context and is not part of the score.</li>
         <li><strong>Modifier key usage:</strong> whether Ctrl, Cmd, Shift, or Alt was held during a keystroke (used to detect copy-paste-heavy workflows).</li>
         <li><strong>Tab visibility periods:</strong> timestamps for when the Google Docs / Word Online tab was hidden and when it became visible again. We record only that the tab lost focus — never which site or application was used in the meantime.</li>
         <li><strong>Timezone offset:</strong> your browser's UTC offset, used to interpret session start times in local time.</li>
@@ -336,7 +338,7 @@
       <h2>3. What we do NOT collect</h2>
       <ul>
         <li>The text you type. We never record the content of your writing.</li>
-        <li>The specific keys you press. Keystrokes are recorded as broad categories (e.g. 'alphabetic key'), and key-pair rhythm is stored only as irreversible hashes — neither can be used to reconstruct what was written.</li>
+        <li>The specific keys you press. Keystrokes are recorded as broad categories (e.g. 'alphabetic key'), and key-pair rhythm is kept only as a per-session summary under one-way hashes (how often and how fast, in no order) — neither can be used to reconstruct what was written.</li>
         <li>The content of pasted text. Only the character count is captured.</li>
         <li>Browsing history, the content or identity of other tabs, or what you do outside of Google Docs and Word Online. (We do record when the writing tab loses and regains focus — see Section 2 — but never where you went.)</li>
         <li>Passwords, form data, or any other sensitive input.</li>
@@ -359,7 +361,7 @@
       <h2>5. Who sees your data</h2>
       <p>Session data is visible to:</p>
       <ul>
-        <li><strong>The educator or institution</strong> that installed and configured Veratype. They can see the integrity scores and flag summaries for sessions conducted under their account.</li>
+        <li><strong>The educator of the class you chose for a document</strong> (and their school's Veratype administrator). They can see the integrity scores and flag summaries for documents you submitted under that class — not your other documents.</li>
         <li><strong>Veratype staff</strong>, only when required for technical support, debugging, or security investigations, and only to the minimum extent necessary.</li>
       </ul>
       <p>We do not sell, rent, or share your data with third parties for any commercial purpose.</p>
@@ -376,14 +378,16 @@
       </ul>
       <h3 style="font-size:17px;font-weight:700;color:var(--navy);margin:28px 0 12px;">Service providers</h3>
       <ul>
-        <li><strong>Amazon Web Services (us-east-1):</strong> hosting, database (RDS PostgreSQL), and AI processing. Behavioural signal summaries and scores (never raw keystroke streams) are processed by Amazon Bedrock to generate educator-facing report text and weekly digests.</li>
+        <li><strong>Amazon Web Services (us-east-1):</strong> hosting, database (RDS PostgreSQL), and AI processing. Scores, flags and session counts (never raw keystroke streams, and never the student's name, email or document title) are processed by Amazon Bedrock to generate educator-facing report text and weekly digests.</li>
         <li><strong>Resend:</strong> transactional email delivery (account verification, educator invites, password resets, weekly digests, contact-form forwarding). Resend processes the recipient email address and message content.</li>
+          <li><strong>Cloudflare:</strong> hosting of this website. No student data.</li>
+          <li><strong>Google Fonts:</strong> web fonts on our pages; Google receives the visitor's IP address.</li>
       </ul>
     </div>
 
     <div class="policy-section" id="retention">
       <h2>7. Data retention</h2>
-      <p>Session data is retained while the associated account is active. When a user's data is deleted — by request or by account deletion — all identifiable data (sessions, raw behavioural events, scores, typing-rhythm baselines, and account information) is permanently removed. We retain only de-identified statistical feature summaries that contain no user, document, class, or school references and cannot be re-linked to any individual; these are used solely to improve scoring accuracy. Deletion requests are honored within 30 days (see Section 11).</p>
+      <p>Session data (behavioural events, scores and the summaries built from them) is deleted automatically 12 months after the session. Your account is kept until you ask for it to be deleted. When a user's data is deleted — by request or by account deletion — all identifiable data (sessions, raw behavioural events, scores, typing-rhythm baselines, and account information) is permanently removed from the live service. We retain only de-identified statistical feature summaries that contain no user, document, class, or school references and cannot be re-linked to any individual; these are used solely to improve scoring accuracy. Encrypted database backups are kept for up to 12 months and then expire. Deletion requests are honored within 30 days (see Section 11).</p>
     </div>
 
     <div class="policy-section" id="your-rights">
