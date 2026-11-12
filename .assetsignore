@@ -1,0 +1,7 @@
+# Repo files that must not be served on veratype.ai (Cloudflare Workers static assets).
+AGENTS.md
+README.md
+wrangler.toml
+.assetsignore
+.git
+.gitignore
