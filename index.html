@@ -76,15 +76,15 @@
           "name": "Does Veratype read what students type?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "No. Veratype never stores or reads student writing. It analyzes behavioural patterns — keystroke timing, paste events, editing flow. Key-pair rhythm is stored only as irreversible hashes. The actual words never leave the browser."
+            "text": "No. Veratype never stores or reads student writing. It analyzes behavioural patterns — keystroke timing, paste events, editing flow. Typing rhythm for common key pairs is kept only as a per-session summary under one-way hashes — how often and how fast, in no order. The actual words never leave the browser."
           }
         },
         {
           "@type": "Question",
-          "name": "How does Veratype detect AI-generated writing?",
+          "name": "Does Veratype detect AI-generated writing?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Veratype scores 19 behavioural signals: paste ratio, typing rhythm variance, typing-rhythm baselines, editing distribution, mutation detection, session duration, and more. Telemetry is cryptographically signed and server-validated to resist tampering."
+            "text": "No, and it does not try to. Veratype shows how a document was produced: it scores 19 behavioural signals such as paste ratio, typing rhythm, editing distribution and session duration. A score is a reason to have a conversation, not proof of anything. Telemetry from each install is signed, so it cannot be altered on the way or submitted by someone else."
           }
         },
         {
@@ -1534,8 +1534,8 @@
         </div>
         <div class="step-item">
           <div class="step-num">03</div>
-          <h3>You get a clear answer</h3>
-          <p>Each session is scored: Authentic, Questionable, or Inauthentic. You decide what to do with it. No guesswork, no reading through drafts.</p>
+          <h3>You get a clear signal</h3>
+          <p>Each session is scored: Authentic, Questionable, or Inauthentic. You decide what to do with it: a score is a reason to look, not a verdict.</p>
         </div>
       </div>
     </div>
@@ -1553,14 +1553,14 @@
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
           </div>
           <h3>We never see the words</h3>
-          <p>Not a character. Not a sentence. We store key categories ("alphabetic key"), timing between keys as irreversible hashes, and paste counts. The actual writing never leaves the browser.</p>
+          <p>Not a character. Not a sentence. We store key categories ("alphabetic key"), the timing between keys, a per-session rhythm summary under one-way hashes, and paste counts. The actual writing never leaves the browser.</p>
         </div>
         <div class="feature-card">
           <div class="feature-icon">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h4l3-9 4 18 3-9h4"/></svg>
           </div>
           <h3>19 signals, personalised baselines</h3>
-          <p>Paste ratio, typing rhythm, editing distribution, mutation detection, and more. Scoring adapts to each student's own patterns over time — so fast typists aren't penalised for being fast. Telemetry is cryptographically signed to resist tampering.</p>
+          <p>Paste ratio, typing rhythm, editing distribution, and more. Scoring adapts to each student's own patterns over time — so fast typists aren't penalised for being fast. Telemetry from each install is signed.</p>
         </div>
         <div class="feature-card">
           <div class="feature-icon">
@@ -1574,7 +1574,7 @@
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="6" r="3"/><circle cx="12" cy="12" r="3"/><circle cx="12" cy="18" r="3"/></svg>
           </div>
           <h3>Three tiers, not pass/fail</h3>
-          <p>Authentic, Questionable, or Inauthentic. Most students score Authentic. The middle tier is there because ambiguity is real — you decide whether to follow up.</p>
+          <p>Authentic, Questionable, or Inauthentic. The middle tier is there because ambiguity is real — you decide whether to follow up.</p>
         </div>
         <div class="feature-card">
           <div class="feature-icon">
@@ -1605,7 +1605,7 @@
           <div class="dm-dot" style="background:#E5484D;"></div>
           <div class="dm-dot" style="background:#D9A514; margin-left:4px;"></div>
           <div class="dm-dot" style="background:#0FA47A; margin-left:4px;"></div>
-          <span class="dm-url">app.veratype.ai/dashboard</span>
+          <span class="dm-url">api.veratype.ai/dashboard</span>
         </div>
         <div class="dm-body">
           <div class="dm-table-header">
@@ -1657,11 +1657,11 @@
       <div class="faq-list">
         <details>
           <summary>Does Veratype read what students type?<span class="faq-indicator"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></summary>
-          <div>No. Veratype never stores or reads student writing. It analyzes behavioural patterns — keystroke timing, paste events, editing flow. Key-pair rhythm is stored only as irreversible hashes. The actual words never leave the browser.</div>
+          <div>No. Veratype never stores or reads student writing. It analyzes behavioural patterns — keystroke timing, paste events, editing flow. Typing rhythm for common key pairs is kept only as a per-session summary under one-way hashes — how often and how fast, in no order. The actual words never leave the browser.</div>
         </details>
         <details>
-          <summary>How does Veratype detect AI-generated writing?<span class="faq-indicator"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></summary>
-          <div>Veratype scores 19 behavioural signals: paste ratio, typing rhythm variance, typing-rhythm baselines, editing distribution, mutation detection, session duration, and more. Telemetry is cryptographically signed and server-validated to resist tampering.</div>
+          <summary>Does Veratype detect AI-generated writing?<span class="faq-indicator"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></summary>
+          <div>No, and it does not try to. Veratype shows how a document was produced: it scores 19 behavioural signals such as paste ratio, typing rhythm, editing distribution and session duration. A score is a reason to have a conversation, not proof of anything. Telemetry from each install is signed, so it cannot be altered on the way or submitted by someone else.</div>
         </details>
         <details>
           <summary>What platforms does Veratype support?<span class="faq-indicator"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></summary>
@@ -1678,7 +1678,7 @@
   <!-- CTA BAND -->
   <div class="cta-band">
     <h2>Ready to see writing behaviour data?</h2>
-    <p>Free for educators. One-click install. No setup for students.</p>
+    <p>Free for educators. One-click install. Students register once with a class code.</p>
     <a href="https://chromewebstore.google.com/detail/dfjbbmkhmiplmnpcpoeijcimiajknmea" class="btn-cta-white" target="_blank" rel="noopener">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
       Add to Chrome

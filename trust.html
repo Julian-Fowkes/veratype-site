@@ -393,7 +393,9 @@
       <p>Veratype is built around three core privacy guarantees:</p>
       <ul>
         <li><strong>No content captured.</strong> The extension never reads, stores, or transmits the text students write. We observe only behavioural metadata — timing, paste counts, editing patterns.</li>
-        <li><strong>No plaintext keys.</strong> Key-pair timing data is stored only as irreversible one-way hashes. Neither Veratype nor any third party can reconstruct which keys were pressed.</li>
+        <li><strong>No keys recorded.</strong> Key presses are stored as broad categories (letter, digit, delete, shortcut). Typing rhythm for common key pairs is kept only as a per-session summary under one-way hashes — how often and how fast, in no order, so it cannot be turned back into what was typed.</li>
+        <li><strong>Nothing before registration.</strong> The extension records nothing until the student has registered and consented, and nothing in a document the student marks as not for a class.</li>
+        <li><strong>Only the class the student chose.</strong> An educator sees a document only when the student submitted it under that educator's class.</li>
         <li><strong>No activity tracking outside the editor.</strong> We record when the writing tab loses and regains focus (to measure session continuity), but never capture which site or application was used in the meantime.</li>
       </ul>
     </div>
@@ -416,7 +418,7 @@
         <li><strong>Encryption in transit:</strong> All data transmitted between the extension, our API, and the educator dashboard is encrypted using TLS.</li>
         <li><strong>Encryption at rest:</strong> Database storage is encrypted at rest using AWS-managed keys.</li>
         <li><strong>IAM-restricted private database:</strong> The PostgreSQL database is hosted in a private subnet with no public internet access, secured by IAM roles and security groups.</li>
-        <li><strong>Session-cookie authentication:</strong> Educator and student sessions are authenticated via secure, HTTP-only cookies.</li>
+        <li><strong>Authentication:</strong> Educators sign in with a password; their sessions use secure, HTTP-only cookies. Each student install holds its own secret and signs what it sends.</li>
         <li><strong>Hashed tokens:</strong> Sensitive tokens (password reset, verification) are stored as one-way hashes.</li>
       </ul>
     </div>
@@ -442,13 +444,23 @@
             <td>Transactional email (account verification, educator invites, password resets, weekly digests, contact-form forwarding)</td>
             <td>US</td>
           </tr>
+          <tr>
+            <td><strong>Cloudflare</strong></td>
+            <td>Hosting of this website (veratype.ai). No student data.</td>
+            <td>Global</td>
+          </tr>
+          <tr>
+            <td><strong>Google Fonts</strong></td>
+            <td>Web fonts on our pages; Google receives the visitor's IP address.</td>
+            <td>Global</td>
+          </tr>
         </tbody>
       </table>
     </div>
 
     <div class="policy-section" id="data-deletion">
       <h2>5. Data deletion</h2>
-      <p>When a user's data is deleted — by request or by account deletion — all identifiable data (sessions, raw behavioural events, scores, typing-rhythm baselines, and account information) is permanently removed. We retain only de-identified statistical feature summaries that contain no user, document, class, or school references and cannot be re-linked to any individual.</p>
+      <p>When a user's data is deleted — by request or by account deletion — all identifiable data (sessions, raw behavioural events, scores, typing-rhythm baselines, and account information) is permanently removed. We retain only de-identified statistical feature summaries that contain no user, document, class, or school references and cannot be re-linked to any individual. Session data is also deleted automatically 12 months after the session. Encrypted database backups are kept for up to 12 months and then expire; deleted data is not restored from them into the live service.</p>
       <p>Deletion requests are honored within 30 days. Districts may request bulk deletion of all student data at contract end.</p>
     </div>
 
@@ -467,7 +479,7 @@
     <div class="footer-top">
       <div class="footer-brand">
         <h3>Vera<span>type</span></h3>
-        <p>Writing behaviour scoring for Google Docs and Word Online. 18 signals, zero content read.</p>
+        <p>Writing behaviour scoring for Google Docs and Word Online. 19 signals, zero content read.</p>
       </div>
       <div class="footer-col">
         <h4>Product</h4>
