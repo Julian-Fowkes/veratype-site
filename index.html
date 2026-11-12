@@ -152,8 +152,8 @@
   </script>
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&display=swap" as="style" />
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="site.css" />
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
       --ink:        #0B1220;
@@ -169,8 +169,6 @@
       --line-dark:  rgba(255,255,255,0.10);
       --mono-dim:   #6B7690;
     }
-
-    html { scroll-behavior: smooth; }
 
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -188,20 +186,6 @@
     }
 
     /* ─── ACCESSIBILITY ──────────────────────────────── */
-    .skip-link {
-      position: absolute;
-      top: -100%;
-      left: 16px;
-      background: var(--pulse);
-      color: #fff;
-      padding: 8px 16px;
-      border-radius: 0 0 6px 6px;
-      font-size: 14px;
-      font-weight: 600;
-      z-index: 200;
-      text-decoration: none;
-    }
-    .skip-link:focus { top: 0; }
 
     .sr-only {
       position: absolute;
@@ -215,13 +199,7 @@
       border: 0;
     }
 
-    /* ─── FOCUS STYLES ───────────────────────────────── */
-    :focus-visible {
-      outline: 2px solid var(--pulse);
-      outline-offset: 2px;
-    }
-
-    /* ─── NAV ─────────────────────────────────────────── */
+/* ─── NAV ─────────────────────────────────────────── */
     nav {
       position: sticky;
       top: 0;
@@ -241,31 +219,6 @@
       -webkit-backdrop-filter: blur(8px);
     }
 
-    .nav-left {
-      display: flex;
-      align-items: center;
-      gap: 40px;
-    }
-
-    .nav-logo {
-      font-family: 'Bricolage Grotesque', sans-serif;
-      font-size: 22px;
-      font-weight: 800;
-      color: var(--ink);
-      text-decoration: none;
-      letter-spacing: -0.02em;
-    }
-
-    .nav-logo span {
-      color: var(--pulse);
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 28px;
-      list-style: none;
-    }
-
     .nav-links a {
       color: var(--mono-dim);
       text-decoration: none;
@@ -274,7 +227,6 @@
       position: relative;
       transition: color 0.15s ease-out;
     }
-    .nav-links a:hover { color: var(--ink); }
 
     .nav-right {
       display: flex;
@@ -901,72 +853,11 @@
       margin-bottom: 56px;
     }
 
-    .footer-top {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: 48px;
-      margin-bottom: 56px;
-    }
-
-    .footer-brand h3 {
-      font-family: 'Bricolage Grotesque', sans-serif;
-      font-size: 20px;
-      font-weight: 800;
-      color: #fff;
-      letter-spacing: -0.02em;
-      margin-bottom: 12px;
-    }
-
-    .footer-brand h3 span { color: var(--pulse); }
-
-    .footer-brand p {
-      font-size: 14px;
-      color: var(--mono-dim);
-      line-height: 1.7;
-      max-width: 280px;
-    }
-
-    .footer-col h4 {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--mono-dim);
-      margin-bottom: 18px;
-    }
-
-    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-
     .footer-col a {
       color: var(--mono-dim);
       text-decoration: none;
       font-size: 14px;
       transition: color 0.15s ease-out;
-    }
-    .footer-col a:hover { color: #fff; }
-
-    .footer-bottom {
-      border-top: 1px solid var(--line-dark);
-      padding-top: 28px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    .footer-bottom p {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 11px;
-      letter-spacing: 0.04em;
-      color: var(--mono-dim);
-    }
-
-    .footer-bottom-links {
-      display: flex;
-      gap: 20px;
-      list-style: none;
     }
 
     .footer-bottom-links a {
@@ -975,7 +866,6 @@
       font-size: 13px;
       transition: color 0.15s ease-out;
     }
-    .footer-bottom-links a:hover { color: #fff; }
 
     /* ─── CONTACT MODAL ───────────────────────────────── */
     .modal-overlay {

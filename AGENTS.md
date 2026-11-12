@@ -20,6 +20,7 @@ Live infrastructure state and gotchas for AI agents working on this repo. Comple
 | `trust.html` | `https://veratype.ai/trust.html` → `/trust` | Trust & security page: what is and is not collected, who sees what, subprocessors |
 | `404.html` | — | Not-found page (not in the sitemap) |
 | `site.js` | — | Shared script (CSP is `script-src 'self'`: no inline scripts) |
+| `site.css` | — | Style rules shared by `index.html`, `privacy.html` and `trust.html` (navigation, footer, reset, focus). Each page loads it before its own `<style>` block, which holds what only that page uses. A rule belongs in `site.css` only if every page that needs it wants exactly the same thing |
 | `_headers` | — | Security headers for every path, including the Content-Security-Policy |
 | `favicon.svg`, `favicon-32.png`, `favicon-16.png`, `og-image.png` | — | Company logo icons (shared with the product — change both together) and social-share image |
 | `robots.txt` | `https://veratype.ai/robots.txt` | Allows all crawlers, references the sitemap |
