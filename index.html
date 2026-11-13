@@ -1006,9 +1006,12 @@
       footer { padding: 0 24px 32px; }
     }
 
+    /* Fixed, like the sticky bar it hangs from. It was `absolute` with no
+       positioned ancestor, so it sat 68px from the top of the DOCUMENT: once
+       the page had scrolled, the menu opened out of sight. */
     .mobile-menu {
       display: none;
-      position: absolute;
+      position: fixed;
       top: 68px;
       left: 0;
       right: 0;
@@ -1626,7 +1629,7 @@
       <button class="modal-close" id="modal-close" aria-label="Close">&times;</button>
       <h2 id="modal-title">Ask us anything</h2>
       <p>We&rsquo;ll reply to the email you provide below.</p>
-      <form id="contact-form" novalidate>
+      <form id="contact-form" method="post" novalidate>
         <div class="modal-field">
           <label for="contact-email">Your email</label>
           <input type="email" id="contact-email" name="email" placeholder="you@example.com" autocomplete="email" />
