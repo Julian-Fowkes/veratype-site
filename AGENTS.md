@@ -18,13 +18,16 @@ Live infrastructure state and gotchas for AI agents working on this repo. Comple
 | `index.html` | `https://veratype.ai` | Marketing page, FAQ (with JSON-LD structured data) and contact modal |
 | `privacy.html` | `https://veratype.ai/privacy.html` → `/privacy` | **The** privacy policy. Linked from the Chrome extension, and `api.veratype.ai/privacy` redirects here — must stay live |
 | `trust.html` | `https://veratype.ai/trust.html` → `/trust` | Trust & security page: what is and is not collected, who sees what, subprocessors |
+| `get-started.html` | `https://veratype.ai/get-started` | "Set up your school": the form a school or teacher uses to ask for access (see *School requests* below). The main call to action on the home page. Blue accent |
+| `students.html` | `https://veratype.ai/students` | For students: you need a class code, how to set up, what is recorded. The only page with an "Add to Chrome" button. Indigo accent (`--pulse` is overridden on this page: indigo is for student-facing surfaces) |
+| `signup.js` | — | Script for the form on `get-started.html` |
 | `404.html` | — | Not-found page (not in the sitemap) |
 | `site.js` | — | Shared script (CSP is `script-src 'self'`: no inline scripts) |
 | `site.css` | — | Style rules shared by `index.html`, `privacy.html` and `trust.html` (navigation, footer, reset, focus). Each page loads it before its own `<style>` block, which holds what only that page uses. A rule belongs in `site.css` only if every page that needs it wants exactly the same thing |
 | `_headers` | — | Security headers for every path, including the Content-Security-Policy |
 | `favicon.svg`, `favicon-32.png`, `favicon-16.png`, `og-image.png` | — | Company logo icons (shared with the product — change both together) and social-share image |
 | `robots.txt` | `https://veratype.ai/robots.txt` | Allows all crawlers, references the sitemap |
-| `sitemap.xml` | `https://veratype.ai/sitemap.xml` | `/`, `/privacy`, `/trust` (the addresses that answer 200, not the `.html` ones that redirect) — update `lastmod` when a page changes (last: 2026-11-12) |
+| `sitemap.xml` | `https://veratype.ai/sitemap.xml` | `/`, `/get-started`, `/students`, `/privacy`, `/trust` (the addresses that answer 200, not the `.html` ones that redirect) — update `lastmod` when a page changes (last: 2026-11-12) |
 
 ## Contact Form
 
@@ -33,6 +36,14 @@ The contact modal on `index.html` POSTs directly to `https://api.veratype.ai/con
 1. User submits email + question on `veratype.ai`
 2. `index.html` JS POSTs to `https://api.veratype.ai/contact`
 3. Backend (`routers/contact.py`) forwards via Resend to `support@veratype.ai`, with the sender as reply-to
+
+## School requests
+
+`get-started.html` POSTs JSON to `https://api.veratype.ai/school-request` (`signup.js`). The backend stores the request, emails `support@veratype.ai`, and lists it on the super admin Requests page, where the school is created and the invite sent.
+
+- The form has a field no visitor sees (`website`) and sends how long the page was open (`elapsed_ms`). The backend drops a post that fills the first or arrives in under three seconds, and still answers "success". There is no CAPTCHA and no wall in front of the page; keep it that way unless spam gets through.
+- Pricing wording, decided by Jules (2026-11-12), used word for word: "Please email support@veratype.ai with your head count for pricing." It is in the home page FAQ ("What does Veratype cost?": visible text and JSON-LD, which must match) and on `get-started.html`. Do not add free tiers, pilots or numbers around it.
+- Who the buttons are for: every "Set up your school" button goes to `/get-started`. "Add to Chrome" is only on `/students`, because a student needs a class code and a teacher cannot use the extension.
 
 ---
 
