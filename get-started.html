@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Set up your school | Veratype</title>
+  <meta name="description" content="Ask for Veratype for your school or your classes. We create your school and send you an invite. Free for a teacher and their classes." />
+  <link rel="canonical" href="https://veratype.ai/get-started" />
+  <meta property="og:title" content="Set up your school | Veratype" />
+  <meta property="og:description" content="Ask for Veratype for your school or your classes. We create your school and send you an invite. Free for a teacher and their classes." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://veratype.ai/get-started" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Set up your school | Veratype" />
+  <meta name="twitter:description" content="Ask for Veratype for your school or your classes. We create your school and send you an invite. Free for a teacher and their classes." />
+  <meta name="theme-color" content="#0a1628" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="site.css" />
+  <style>
+
+    :root {
+      --ink:        #0B1220;
+      --ink-soft:   #1C2A42;
+      --paper:      #FAFBFD;
+      --paper-dim:  #EFF2F8;
+      --pulse:      #2563FF;
+      --pulse-deep: #1D4FD8;
+      --line:       #DCE2EE;
+      --line-dark:  rgba(255,255,255,0.10);
+      --mono-dim:   #6B7690;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+      line-height: 1.7;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 48px;
+      height: 68px;
+      background: rgba(250,251,253,0.85);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav-links a {
+      color: var(--mono-dim);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.15s;
+    }
+
+/* CONTENT */
+
+    .policy-section h3 {
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--ink);
+      margin: 28px 0 12px;
+    }
+
+    .policy-section table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 16px;
+      font-size: 14px;
+    }
+
+    .policy-section th, .policy-section td {
+      text-align: left;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--line);
+      color: var(--mono-dim);
+    }
+
+    .policy-section th {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink);
+      background: var(--paper-dim);
+    }
+
+    .cta-box {
+      background: var(--paper-dim);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 32px;
+      text-align: center;
+    }
+
+    .cta-box p {
+      color: var(--mono-dim);
+      margin-bottom: 16px;
+    }
+
+    .cta-box a {
+      display: inline-block;
+      padding: 12px 24px;
+      background: var(--pulse);
+      border-radius: 8px;
+      color: #fff;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+    .cta-box a:hover { background: var(--pulse-deep); }
+
+    .content p a, .content li a { color: var(--pulse); text-underline-offset: 3px; }
+
+    /* FOOTER */
+    footer {
+      background: var(--ink);
+      padding: 64px 48px 40px;
+    }
+
+    .footer-col a {
+      color: var(--mono-dim);
+      text-decoration: none;
+      font-size: 14px;
+      transition: color 0.15s;
+    }
+
+    .footer-bottom-links a {
+      color: var(--mono-dim);
+      text-decoration: none;
+      font-size: 13px;
+      transition: color 0.15s;
+    }
+
+    /* Six links and "Back to home" need about 1,040px. */
+    @media (max-width: 1040px) { .nav-links { display: none; } }
+
+    @media (max-width: 960px) {
+      nav { padding: 0 24px; }
+      .nav-links { display: none; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+      footer { padding: 48px 24px 32px; }
+    }
+
+    @media (max-width: 600px) {
+      nav { padding: 0 20px; }
+      footer { padding: 32px 20px; }
+      .footer-top { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; }
+    }
+
+    /* THE FORM */
+    .lede { color: var(--mono-dim); font-size: 16px; margin-bottom: 28px; }
+    .signup { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 28px; margin-bottom: 40px; }
+    .signup .row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .signup .field { margin-bottom: 16px; }
+    .signup label { display: block; font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 6px; }
+    .signup label .opt { font-weight: 400; color: var(--mono-dim); }
+    .signup input, .signup select, .signup textarea {
+      width: 100%; padding: 11px 12px; border: 1px solid var(--line); border-radius: 8px;
+      font: inherit; font-size: 15px; color: var(--ink); background: #fff;
+    }
+    .signup textarea { min-height: 96px; resize: vertical; }
+    .signup input:focus, .signup select:focus, .signup textarea:focus {
+      outline: none; border-color: var(--pulse); box-shadow: 0 0 0 3px rgba(37, 99, 255, 0.15);
+    }
+    .signup button {
+      padding: 12px 24px; border: 0; border-radius: 8px; background: var(--pulse); color: #fff;
+      font: inherit; font-size: 15px; font-weight: 600; cursor: pointer; transition: background 0.15s;
+    }
+    .signup button:hover { background: var(--pulse-deep); }
+    .signup button:disabled { opacity: 0.55; cursor: default; }
+    .signup .small { font-size: 13px; color: var(--mono-dim); margin: 14px 0 0; }
+    .signup .status { font-size: 14px; margin: 14px 0 0; color: #b42318; min-height: 1.2em; }
+    .signup .thanks { font-size: 16px; color: var(--ink); margin: 0; }
+    .signup .thanks strong { display: block; font-size: 19px; margin-bottom: 6px; }
+    /* A field no person sees or reaches: anything in it means a script filled the form. */
+    .signup .leave-empty { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+    .steps-list { counter-reset: step; list-style: none; padding: 0; margin: 0 0 8px; }
+    .steps-list li { counter-increment: step; position: relative; padding: 0 0 18px 44px; color: var(--mono-dim); }
+    .steps-list li::before {
+      content: counter(step); position: absolute; left: 0; top: 0; width: 28px; height: 28px; border-radius: 50%;
+      background: var(--pulse); color: #fff; font-size: 13px; font-weight: 600; display: flex; align-items: center; justify-content: center;
+    }
+    .steps-list li strong { color: var(--ink); display: block; }
+    @media (max-width: 600px) { .signup { padding: 20px; } .signup .row { grid-template-columns: 1fr; gap: 0; } }
+  </style>
+</head>
+<body>
+
+  <a href="#content" class="skip-link">Skip to content</a>
+
+  <nav>
+    <div class="nav-left">
+      <a href="/" class="nav-logo">Vera<span>type</span></a>
+      <ul class="nav-links">
+        <li><a href="/#how-it-works">How it works</a></li>
+        <li><a href="/#features">Privacy & features</a></li>
+        <li><a href="/#faq">FAQ</a></li>
+        <li><a href="/privacy">Privacy policy</a></li>
+        <li><a href="/trust">For schools</a></li>
+        <li><a href="/students">For students</a></li>
+      </ul>
+    </div>
+    <a href="/" class="nav-back">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      Back to home
+    </a>
+  </nav>
+
+  <div class="page-hero">
+    <h1>Set up your school</h1>
+    <p>Tell us about your school. We create it and send you an invite.</p>
+  </div>
+
+  <div class="content" id="content" role="main">
+
+    <p class="lede">Veratype is set up school by school: we create your school, you invite your teachers, and each class gets a code that students use to register. Nothing is recorded for a student who is not in a class.</p>
+
+    <div class="signup">
+      <form id="school-form" method="post" novalidate>
+        <div class="row">
+          <div class="field">
+            <label for="sr-name">Your name</label>
+            <input type="text" id="sr-name" name="name" autocomplete="name" maxlength="120" required>
+          </div>
+          <div class="field">
+            <label for="sr-email">Work email</label>
+            <input type="email" id="sr-email" name="email" autocomplete="email" maxlength="254" required>
+          </div>
+        </div>
+        <div class="row">
+          <div class="field">
+            <label for="sr-school">School or institution</label>
+            <input type="text" id="sr-school" name="school" autocomplete="organization" maxlength="200" required>
+          </div>
+          <div class="field">
+            <label for="sr-role">Your role <span class="opt">(optional)</span></label>
+            <input type="text" id="sr-role" name="role" autocomplete="organization-title" maxlength="120" placeholder="e.g. Head of English">
+          </div>
+        </div>
+        <div class="row">
+          <div class="field">
+            <label for="sr-type">Type</label>
+            <select id="sr-type" name="institution_type">
+              <option value="k12">School (K-12)</option>
+              <option value="higher_ed">College or university</option>
+              <option value="other">Something else</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="sr-students">Students who would use it <span class="opt">(optional)</span></label>
+            <select id="sr-students" name="students">
+              <option value="">Not sure yet</option>
+              <option value="under_100">Under 100</option>
+              <option value="100_500">100 to 500</option>
+              <option value="500_2000">500 to 2,000</option>
+              <option value="over_2000">Over 2,000</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label for="sr-message">Anything we should know <span class="opt">(optional)</span></label>
+          <textarea id="sr-message" name="message" maxlength="2000"></textarea>
+        </div>
+        <div class="leave-empty" aria-hidden="true">
+          <label for="sr-website">Leave this empty</label>
+          <input type="text" id="sr-website" name="website" tabindex="-1" autocomplete="off">
+        </div>
+        <button type="submit" id="sr-submit">Send request</button>
+        <p class="status" id="sr-status" role="alert"></p>
+        <p class="small">We use these details to reply to you and to set up your school, and delete them after 12 months. See the <a href="/privacy">privacy policy</a>.</p>
+        <noscript><p class="small">This form needs JavaScript. You can also email <a href="mailto:support@veratype.ai">support@veratype.ai</a> with the same details.</p></noscript>
+      </form>
+    </div>
+
+    <div class="policy-section" id="what-happens-next">
+      <h2>What happens next</h2>
+      <ol class="steps-list">
+        <li><strong>We create your school and email you an invite.</strong> A person reads every request.</li>
+        <li><strong>You set a password, create a class and get its code.</strong> If you are the school's administrator, you can invite other teachers too.</li>
+        <li><strong>Students install the extension and register with that code.</strong> From then on you see how each document was written. See <a href="/students">what students see</a>.</li>
+      </ol>
+    </div>
+
+    <div class="policy-section" id="what-it-costs">
+      <h2>What it costs</h2>
+      <p>Veratype is free for a teacher and their classes, and free for students. Pilots are free. School-wide and district licences are arranged with us: say so in the form and we will talk.</p>
+    </div>
+
+    <div class="policy-section" id="before-you-ask">
+      <h2>Before you ask</h2>
+      <p>Compliance, security and student privacy are covered on <a href="/trust">For schools</a>, and the full policy is the <a href="/privacy">privacy policy</a>. For anything else, email <a href="mailto:support@veratype.ai">support@veratype.ai</a>.</p>
+    </div>
+
+  </div>
+
+  <footer>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <h3>Vera<span>type</span></h3>
+        <p>Writing behaviour scoring for Google Docs and Word Online. 19 signals, zero content read.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Product</h4>
+        <ul>
+          <li><a href="/#how-it-works">How it works</a></li>
+          <li><a href="/#features">Features</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="/privacy">Privacy Policy</a></li>
+          <li><a href="/trust">For Schools</a></li>
+          <li><a href="/students">For Students</a></li>
+          <li><a href="/get-started">Set up your school</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:support@veratype.ai">support@veratype.ai</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Veratype. All rights reserved.</p>
+      <ul class="footer-bottom-links">
+        <li><a href="/privacy">Privacy Policy</a></li>
+        <li><a href="/trust">For Schools</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="signup.js"></script>
+</body>
+</html>

@@ -143,7 +143,7 @@
           "name": "Is Veratype free?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Yes. The Chrome extension is free for students and educators. School-wide and district licensing is available — contact us for details."
+            "text": "Yes, for a teacher and their classes, and for students. Pilots are free. School-wide and district licences are arranged with us: tell us about your school and we will talk."
           }
         }
       ]
@@ -348,6 +348,9 @@
       transition: color 0.15s ease-out;
     }
     .btn-hero-secondary:hover { color: #fff; }
+
+    .hero-student { margin-top: 18px; font-size: 14px; color: rgba(255,255,255,0.62); }
+    .hero-student a { color: #fff; text-decoration: underline; text-underline-offset: 3px; }
 
     /* Hero demo cards */
     .hero-visual {
@@ -980,6 +983,16 @@
       color: var(--ink);
     }
 
+    /* The full bar needs about 1,200px (six links and two buttons). Below
+       that the links move into the menu, instead of every label wrapping onto
+       two lines as they did. */
+    .nav-links a, .nav-right a, .nav-right button { white-space: nowrap; }
+    @media (max-width: 1200px) {
+      .nav-links { display: none; }
+      .nav-toggle { display: block; }
+      .nav-right .btn-ghost { display: none; }
+    }
+
     @media (max-width: 960px) {
       nav { padding: 0 24px; }
       .nav-links { display: none; }
@@ -1120,11 +1133,12 @@
         <li><a href="#faq">FAQ</a></li>
         <li><a href="/privacy">Privacy policy</a></li>
         <li><a href="/trust">For schools</a></li>
+        <li><a href="/students">For students</a></li>
       </ul>
     </div>
     <div class="nav-right">
       <button type="button" class="btn-ghost" id="open-modal-nav">Ask a question</button>
-      <a href="https://chromewebstore.google.com/detail/dfjbbmkhmiplmnpcpoeijcimiajknmea" class="btn-primary" target="_blank" rel="noopener">Add to Chrome</a>
+      <a href="/get-started" class="btn-primary">Set up your school</a>
       <button type="button" class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
       </button>
@@ -1136,6 +1150,8 @@
     <a href="#faq">FAQ</a>
     <a href="/privacy">Privacy policy</a>
     <a href="/trust">For schools</a>
+    <a href="/students">For students</a>
+    <a href="/get-started">Set up your school</a>
     <a href="#" id="open-modal-mobile">Ask a question</a>
   </div>
 
@@ -1153,15 +1169,15 @@
           Veratype watches typing rhythm, paste patterns, and editing behaviour in Google Docs and Word Online. 19 signals, scored in real time. We never see a single word your students write.
         </p>
         <div class="hero-actions">
-          <a href="https://chromewebstore.google.com/detail/dfjbbmkhmiplmnpcpoeijcimiajknmea" class="btn-hero-primary" target="_blank" rel="noopener">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-            Add to Chrome. It's free
+          <a href="/get-started" class="btn-hero-primary">
+            Set up your school
           </a>
           <a href="#how-it-works" class="btn-hero-secondary">
             See how it works
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
           </a>
         </div>
+        <p class="hero-student">Student? You need a class code from your teacher. <a href="/students">Start here</a>.</p>
       </div>
       <div class="hero-visual">
         <!-- Card A: Authentic -->
@@ -1596,7 +1612,7 @@
         </details>
         <details>
           <summary>Is Veratype free?<span class="faq-indicator"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></summary>
-          <div>Yes. The Chrome extension is free for students and educators. School-wide and district licensing is available — contact us for details.</div>
+          <div>Yes, for a teacher and their classes, and for students. Pilots are free. School-wide and district licences are arranged with us: <a href="/get-started">tell us about your school</a> and we will talk.</div>
         </details>
       </div>
     </div>
@@ -1605,10 +1621,9 @@
   <!-- CTA BAND -->
   <div class="cta-band">
     <h2>Ready to see writing behaviour data?</h2>
-    <p>Free for educators. One-click install. Students register once with a class code.</p>
-    <a href="https://chromewebstore.google.com/detail/dfjbbmkhmiplmnpcpoeijcimiajknmea" class="btn-cta-white" target="_blank" rel="noopener">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-      Add to Chrome
+    <p>Free for a teacher and their classes. We set up your school; your students join with a class code.</p>
+    <a href="/get-started" class="btn-cta-white">
+      Set up your school
     </a>
   </div>
 
@@ -1725,6 +1740,8 @@
         <ul>
           <li><a href="/privacy">Privacy Policy</a></li>
           <li><a href="/trust">For Schools</a></li>
+          <li><a href="/students">For Students</a></li>
+          <li><a href="/get-started">Set up your school</a></li>
         </ul>
       </div>
       <div class="footer-col">

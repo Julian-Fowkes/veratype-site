@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>For students | Veratype</title>
+  <meta name="description" content="Your teacher has asked you to use Veratype. What it records, what it never does, and how to set it up with your class code." />
+  <link rel="canonical" href="https://veratype.ai/students" />
+  <meta property="og:title" content="For students | Veratype" />
+  <meta property="og:description" content="Your teacher has asked you to use Veratype. What it records, what it never does, and how to set it up with your class code." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://veratype.ai/students" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="For students | Veratype" />
+  <meta name="twitter:description" content="Your teacher has asked you to use Veratype. What it records, what it never does, and how to set it up with your class code." />
+  <meta name="theme-color" content="#0a1628" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="site.css" />
+  <style>
+
+    :root {
+      --ink:        #0B1220;
+      --ink-soft:   #1C2A42;
+      --paper:      #FAFBFD;
+      --paper-dim:  #EFF2F8;
+      --pulse:      #4F46E5;
+      --pulse-deep: #4338CA;
+      --line:       #DCE2EE;
+      --line-dark:  rgba(255,255,255,0.10);
+      --mono-dim:   #6B7690;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+      line-height: 1.7;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 48px;
+      height: 68px;
+      background: rgba(250,251,253,0.85);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav-links a {
+      color: var(--mono-dim);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.15s;
+    }
+
+/* CONTENT */
+
+    .policy-section h3 {
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--ink);
+      margin: 28px 0 12px;
+    }
+
+    .policy-section table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 16px;
+      font-size: 14px;
+    }
+
+    .policy-section th, .policy-section td {
+      text-align: left;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--line);
+      color: var(--mono-dim);
+    }
+
+    .policy-section th {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink);
+      background: var(--paper-dim);
+    }
+
+    .cta-box {
+      background: var(--paper-dim);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 32px;
+      text-align: center;
+    }
+
+    .cta-box p {
+      color: var(--mono-dim);
+      margin-bottom: 16px;
+    }
+
+    .cta-box a {
+      display: inline-block;
+      padding: 12px 24px;
+      background: var(--pulse);
+      border-radius: 8px;
+      color: #fff;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+    .cta-box a:hover { background: var(--pulse-deep); }
+
+    .content p a, .content li a { color: var(--pulse); text-underline-offset: 3px; }
+
+    /* FOOTER */
+    footer {
+      background: var(--ink);
+      padding: 64px 48px 40px;
+    }
+
+    .footer-col a {
+      color: var(--mono-dim);
+      text-decoration: none;
+      font-size: 14px;
+      transition: color 0.15s;
+    }
+
+    .footer-bottom-links a {
+      color: var(--mono-dim);
+      text-decoration: none;
+      font-size: 13px;
+      transition: color 0.15s;
+    }
+
+    /* Six links and "Back to home" need about 1,040px. */
+    @media (max-width: 1040px) { .nav-links { display: none; } }
+
+    @media (max-width: 960px) {
+      nav { padding: 0 24px; }
+      .nav-links { display: none; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+      footer { padding: 48px 24px 32px; }
+    }
+
+    @media (max-width: 600px) {
+      nav { padding: 0 20px; }
+      footer { padding: 32px 20px; }
+      .footer-top { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; }
+    }
+
+    .lede { color: var(--mono-dim); font-size: 16px; margin-bottom: 28px; }
+    .steps-list { counter-reset: step; list-style: none; padding: 0; margin: 0 0 8px; }
+    .steps-list li { counter-increment: step; position: relative; padding: 0 0 18px 44px; color: var(--mono-dim); }
+    .steps-list li::before {
+      content: counter(step); position: absolute; left: 0; top: 0; width: 28px; height: 28px; border-radius: 50%;
+      background: var(--pulse); color: #fff; font-size: 13px; font-weight: 600; display: flex; align-items: center; justify-content: center;
+    }
+    .steps-list li strong { color: var(--ink); display: block; }
+    .code-note { background: var(--paper-dim); border: 1px solid var(--line); border-radius: 12px; padding: 20px 24px; margin-bottom: 32px; }
+    .code-note strong { display: block; font-size: 17px; color: var(--ink); margin-bottom: 4px; }
+    .code-note p { margin: 0; color: var(--mono-dim); }
+  </style>
+</head>
+<body>
+
+  <a href="#content" class="skip-link">Skip to content</a>
+
+  <nav>
+    <div class="nav-left">
+      <a href="/" class="nav-logo">Vera<span>type</span></a>
+      <ul class="nav-links">
+        <li><a href="/#how-it-works">How it works</a></li>
+        <li><a href="/#features">Privacy & features</a></li>
+        <li><a href="/#faq">FAQ</a></li>
+        <li><a href="/privacy">Privacy policy</a></li>
+        <li><a href="/trust">For schools</a></li>
+        <li><a href="/students">For students</a></li>
+      </ul>
+    </div>
+    <a href="/" class="nav-back">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      Back to home
+    </a>
+  </nav>
+
+  <div class="page-hero">
+    <h1>For students</h1>
+    <p>Your teacher has asked you to use Veratype. Here is what it does and how to set it up.</p>
+  </div>
+
+  <div class="content" id="content" role="main">
+
+    <div class="code-note">
+      <strong>You need a class code.</strong>
+      <p>Your teacher gives you an 8-character code for your class. You register with that code and your student email. Without a code you cannot register, and nothing is recorded.</p>
+    </div>
+
+    <div class="policy-section" id="set-up">
+      <h2>Set it up</h2>
+      <ol class="steps-list">
+        <li><strong>Add Veratype to Chrome.</strong> It is a free Chrome extension. A small window opens when it is installed.</li>
+        <li><strong>Read what it collects, then enter your class code and student email.</strong> Nothing is recorded before you have registered.</li>
+        <li><strong>Open the link we email you, in the same browser.</strong> That links the extension to your account, already in your class.</li>
+      </ol>
+      <div class="cta-box">
+        <p>Have your class code ready.</p>
+        <a href="https://chromewebstore.google.com/detail/dfjbbmkhmiplmnpcpoeijcimiajknmea" target="_blank" rel="noopener">Add to Chrome</a>
+      </div>
+    </div>
+
+    <div class="policy-section" id="what-it-records">
+      <h2>What it records</h2>
+      <ul>
+        <li><strong>How you type, not what you type.</strong> The timing of key presses and the kind of key (letter, digit, delete, shortcut). Not which keys you press, and not your text.</li>
+        <li><strong>Pastes, copies and cuts, as counts.</strong> How many characters, never the content.</li>
+        <li><strong>When the tab was hidden.</strong> Not where you went.</li>
+        <li><strong>The document's title and ID, your student email, and the class you choose.</strong></li>
+      </ul>
+    </div>
+
+    <div class="policy-section" id="your-choices">
+      <h2>What you control</h2>
+      <ul>
+        <li><strong>Only documents for a class.</strong> Mark a document "Not for a class" in the Veratype panel and nothing is recorded in it.</li>
+        <li><strong>Who sees it.</strong> The teacher of each class you choose for a document, and their school's Veratype administrator. A class keeps a document once you have chosen it.</li>
+        <li><strong>Your data.</strong> It is deleted automatically after 12 months, and you can ask for it to be deleted sooner by emailing <a href="mailto:privacy@veratype.ai">privacy@veratype.ai</a>.</li>
+      </ul>
+    </div>
+
+    <div class="policy-section" id="the-score">
+      <h2>About the score</h2>
+      <p>Veratype gives each document a score for how it was produced. A score is an indicator, not evidence: any decision about your work has to be made by a person, and a score alone is not grounds for one. The full detail is in the <a href="/privacy">privacy policy</a>.</p>
+    </div>
+
+  </div>
+
+  <footer>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <h3>Vera<span>type</span></h3>
+        <p>Writing behaviour scoring for Google Docs and Word Online. 19 signals, zero content read.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Product</h4>
+        <ul>
+          <li><a href="/#how-it-works">How it works</a></li>
+          <li><a href="/#features">Features</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="/privacy">Privacy Policy</a></li>
+          <li><a href="/trust">For Schools</a></li>
+          <li><a href="/students">For Students</a></li>
+          <li><a href="/get-started">Set up your school</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:support@veratype.ai">support@veratype.ai</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Veratype. All rights reserved.</p>
+      <ul class="footer-bottom-links">
+        <li><a href="/privacy">Privacy Policy</a></li>
+        <li><a href="/trust">For Schools</a></li>
+      </ul>
+    </div>
+  </footer>
+
+
+</body>
+</html>

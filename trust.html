@@ -111,7 +111,7 @@
       margin-bottom: 16px;
     }
 
-    .cta-box a {
+    .cta-box > a {
       display: inline-block;
       padding: 12px 24px;
       background: var(--pulse);
@@ -122,7 +122,9 @@
       text-decoration: none;
       transition: background 0.15s;
     }
-    .cta-box a:hover { background: var(--pulse-deep); }
+    .cta-box > a:hover { background: var(--pulse-deep); }
+
+    .content p a, .content li a { color: var(--pulse); text-underline-offset: 3px; }
 
     /* FOOTER */
     footer {
@@ -143,6 +145,9 @@
       font-size: 13px;
       transition: color 0.15s;
     }
+
+    /* Six links and "Back to home" need about 1,040px. */
+    @media (max-width: 1040px) { .nav-links { display: none; } }
 
     @media (max-width: 960px) {
       nav { padding: 0 24px; }
@@ -172,6 +177,7 @@
         <li><a href="/#faq">FAQ</a></li>
         <li><a href="/privacy">Privacy policy</a></li>
         <li><a href="/trust">For schools</a></li>
+        <li><a href="/students">For students</a></li>
       </ul>
     </div>
     <a href="/" class="nav-back">
@@ -193,7 +199,7 @@
       <ul>
         <li><strong>No content captured.</strong> The extension never reads, stores, or transmits the text students write. We observe only behavioural metadata — timing, paste counts, editing patterns.</li>
         <li><strong>No keys recorded.</strong> Key presses are stored as broad categories (letter, digit, delete, shortcut). Typing rhythm for common key pairs is kept only as a per-session summary under one-way hashes — how often and how fast, in no order, so it cannot be turned back into what was typed.</li>
-        <li><strong>Nothing before registration.</strong> The extension records nothing until the student has registered and consented, and nothing in a document the student marks as not for a class.</li>
+        <li><strong>Nothing before registration, and nothing outside a class.</strong> A student registers with the code for their class. The extension records nothing until the student has registered and consented, nothing for a student who is in no class, and nothing in a document the student marks as not for a class.</li>
         <li><strong>Only the class the student chose.</strong> An educator sees a document only when the student submitted it under that educator's class.</li>
         <li><strong>No activity tracking outside the editor.</strong> We record when the writing tab loses and regains focus (to measure session continuity), but never capture which site or application was used in the meantime.</li>
       </ul>
@@ -267,8 +273,8 @@
       <h2>6. Contact for DPAs</h2>
       <p>Ready to roll out Veratype across your school or district? Need a signed Data Privacy Agreement?</p>
       <div class="cta-box">
-        <p>Reach out and we will work with your team to get everything in place.</p>
-        <a href="mailto:support@veratype.ai">Contact support@veratype.ai</a>
+        <p>Tell us about your school and we will work with your team to get everything in place. For a DPA, email <a href="mailto:support@veratype.ai">support@veratype.ai</a>.</p>
+        <a href="/get-started">Set up your school</a>
       </div>
     </div>
 
@@ -292,6 +298,8 @@
         <ul>
           <li><a href="/privacy">Privacy Policy</a></li>
           <li><a href="/trust">For Schools</a></li>
+          <li><a href="/students">For Students</a></li>
+          <li><a href="/get-started">Set up your school</a></li>
         </ul>
       </div>
       <div class="footer-col">
