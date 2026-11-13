@@ -42,7 +42,7 @@ The contact modal on `index.html` POSTs directly to `https://api.veratype.ai/con
 `get-started.html` POSTs JSON to `https://api.veratype.ai/school-request` (`signup.js`). The backend stores the request, emails `support@veratype.ai`, and lists it on the super admin Requests page, where the school is created and the invite sent.
 
 - The form has a field no visitor sees (`website`) and sends how long the page was open (`elapsed_ms`). The backend drops a post that fills the first or arrives in under three seconds, and still answers "success". There is no CAPTCHA and no wall in front of the page; keep it that way unless spam gets through.
-- Pricing is stated as a model, not a number: free for a teacher and their classes, pilots free, school-wide licences by conversation. The same sentence is in the home page FAQ (visible text and JSON-LD) and on `get-started.html`: change all three together.
+- Pricing wording, decided by Jules (2026-11-12), used word for word: "Please email support@veratype.ai with your head count for pricing." It is in the home page FAQ ("What does Veratype cost?": visible text and JSON-LD, which must match) and on `get-started.html`. Do not add free tiers, pilots or numbers around it.
 - Who the buttons are for: every "Set up your school" button goes to `/get-started`. "Add to Chrome" is only on `/students`, because a student needs a class code and a teacher cannot use the extension.
 
 ---
