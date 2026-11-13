@@ -51,10 +51,18 @@
           students: field('sr-students').value,
           message: field('sr-message').value.trim(),
           website: field('sr-website').value,
-          elapsed_ms: Date.now() - openedAt,
+          // Capped at a day: the backend refuses anything longer, and a page
+          // left open overnight is still a person.
+          elapsed_ms: Math.min(Date.now() - openedAt, 86400000),
         }),
       });
       if (res.ok) { thanks(email); return; }
+      if (res.status === 429) {
+        status.textContent = 'Too many requests from your network just now. Please wait a minute and try again.';
+        submit.disabled = false;
+        submit.textContent = 'Send request';
+        return;
+      }
       var data = await res.json().catch(function () { return {}; });
       status.textContent = typeof data.detail === 'string'
         ? data.detail
