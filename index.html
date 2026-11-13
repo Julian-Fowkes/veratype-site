@@ -1641,11 +1641,11 @@
       <form id="contact-form" method="post" novalidate>
         <div class="modal-field">
           <label for="contact-email">Your email</label>
-          <input type="email" id="contact-email" name="email" placeholder="you@example.com" autocomplete="email" />
+          <input type="email" id="contact-email" name="email" placeholder="you@example.com" autocomplete="email" maxlength="254" />
         </div>
         <div class="modal-field">
           <label for="contact-question">Your question</label>
-          <textarea id="contact-question" name="question" placeholder="What would you like to know?" rows="4"></textarea>
+          <textarea id="contact-question" name="question" placeholder="What would you like to know?" rows="4" maxlength="2000"></textarea>
         </div>
         <button type="submit" id="contact-submit" class="modal-submit" disabled>Send question</button>
         <p class="modal-status" id="modal-status"></p>
