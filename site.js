@@ -72,7 +72,11 @@ document.getElementById('contact-form').addEventListener('submit', async functio
       this.innerHTML = '<p style="text-align:center;color:var(--pulse);font-weight:700;font-size:16px;padding:24px 0">Message sent — we’ll be in touch!</p>';
     } else {
       var data = await res.json().catch(function() { return {}; });
-      modalStatus.textContent = data.detail || 'Something went wrong. Please try again.';
+      // `detail` is a sentence for the errors the API words itself, and a list
+      // of objects for its automatic checks (shown as "[object Object]").
+      modalStatus.textContent = typeof data.detail === 'string'
+        ? data.detail
+        : 'We could not send that. Please try again, or email support@veratype.ai.';
       submitBtn.disabled = false;
       submitBtn.textContent = 'Send question';
     }
