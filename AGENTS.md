@@ -26,6 +26,7 @@ Live infrastructure state and gotchas for AI agents working on this repo. Comple
 | `site.css` | — | Style rules shared by `index.html`, `privacy.html` and `trust.html` (navigation, footer, reset, focus). Each page loads it before its own `<style>` block, which holds what only that page uses. A rule belongs in `site.css` only if every page that needs it wants exactly the same thing |
 | `_headers` | — | Security headers for every path, including the Content-Security-Policy |
 | `favicon.svg`, `favicon-32.png`, `favicon-16.png`, `og-image.png` | — | Company logo icons (shared with the product — change both together) and social-share image |
+| `email/veratype-mark-132.png` | `https://veratype.ai/email/veratype-mark-132.png` | The logo mark (from `favicon.svg`) as a 132px PNG for email signatures, shown at 44px. Email clients do not show SVG. Outbound email links to this address, so keep it live |
 | `robots.txt` | `https://veratype.ai/robots.txt` | Allows all crawlers, references the sitemap |
 | `sitemap.xml` | `https://veratype.ai/sitemap.xml` | `/`, `/get-started`, `/students`, `/privacy`, `/trust` (the addresses that answer 200, not the `.html` ones that redirect) — update `lastmod` when a page changes (last: 2026-11-12) |
 
