@@ -33,6 +33,7 @@ Push to `main` triggers an automatic deploy via Cloudflare's Git integration run
 `wrangler.toml` configures:
 - `[assets]` directory — serves static files from the repo root
 - `compatibility_date` — required by wrangler for Workers deployments
+- `not_found_handling = "404-page"` — an address that matches no file gets `404.html` with status 404 (before 2026-11-16 it got an empty body)
 
 ## Gotchas
 
