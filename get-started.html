@@ -198,6 +198,27 @@
     }
     .steps-list li strong { color: var(--ink); display: block; }
     @media (max-width: 600px) { .signup { padding: 20px; } .signup .row { grid-template-columns: 1fr; gap: 0; } }
+
+    /* THE PRICE TABLE */
+    .prices-wrap { border: 1px solid var(--line); border-radius: 12px; overflow: hidden; margin-bottom: 20px; background: #fff; }
+    .policy-section .prices { margin-bottom: 0; }
+    .policy-section .prices tbody tr:last-child th, .policy-section .prices tbody tr:last-child td { border-bottom: 0; }
+    /* The plan name is a row heading: it reads as body text, not as the column-heading style above. */
+    .policy-section .prices tbody th {
+      font-family: inherit; font-size: 14px; font-weight: 600; letter-spacing: 0; text-transform: none;
+      color: var(--ink); background: none;
+    }
+    .policy-section .prices .price { color: var(--ink); font-weight: 600; }
+    /* On a phone each plan becomes a short block: name, who it is for, price. */
+    @media (max-width: 600px) {
+      .prices thead { position: absolute; left: -9999px; }
+      .prices, .prices tbody, .prices tr, .prices th, .prices td { display: block; width: 100%; }
+      .policy-section .prices tr { padding: 14px 16px; border-bottom: 1px solid var(--line); }
+      .policy-section .prices tbody tr:last-child { border-bottom: 0; }
+      .policy-section .prices tbody th, .policy-section .prices td { padding: 0; border-bottom: 0; }
+      .policy-section .prices tbody th { font-size: 15px; }
+      .policy-section .prices .price { margin-top: 4px; }
+    }
   </style>
 </head>
 <body>
@@ -299,7 +320,26 @@
 
     <div class="policy-section" id="what-it-costs">
       <h2>What it costs</h2>
-      <p>Please email <a href="mailto:support@veratype.ai">support@veratype.ai</a> with your head count for pricing.</p>
+      <p>Veratype is sold by the year to instructors, departments and whole colleges. Students never pay.</p>
+      <div class="prices-wrap">
+        <table class="prices">
+          <thead>
+            <tr><th scope="col">Plan</th><th scope="col">For</th><th scope="col">Price per year (US$)</th></tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">Classroom</th><td>One instructor, one class of up to 40 students</td><td class="price">No charge</td></tr>
+            <tr><th scope="row">Instructor Plus</th><td>One instructor, all of their classes</td><td class="price">$144, or $15 a month</td></tr>
+            <tr><th scope="row">Department</th><td>One department or program, up to 500 students</td><td class="price">$2,400</td></tr>
+            <tr><th scope="row">Department Plus</th><td>One department or program, up to 1,500 students</td><td class="price">$4,900</td></tr>
+            <tr><th scope="row">Institution, founding schools</th><td>The whole college, ordered by 30 June 2027</td><td class="price">$2 per student; minimum $6,000, maximum $24,000</td></tr>
+            <tr><th scope="row">Institution</th><td>The whole college, ordered from 1 July 2027</td><td class="price">$3 per student; minimum $7,500</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p><strong>Founding schools.</strong> The first ten colleges to order an Institution plan by 30 June 2027 pay $2 per student a year, with a minimum of $6,000 and a maximum of $24,000, and keep that price for three annual terms.</p>
+      <p><strong>How students are counted.</strong> For Department plans, the students enrolled in the department's classes that use Veratype during the year. For Institution plans, the college's fall headcount of students enrolled for credit.</p>
+      <p><strong>Term.</strong> Twelve months from the start date on the order, paid in advance.</p>
+      <p><strong>To start.</strong> Send the form above, or email <a href="mailto:support@veratype.ai">support@veratype.ai</a> with the plan and your student count. For a K-12 school or district, please email <a href="mailto:support@veratype.ai">support@veratype.ai</a> with your head count for pricing.</p>
     </div>
 
     <div class="policy-section" id="before-you-ask">
