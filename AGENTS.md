@@ -28,7 +28,7 @@ Live infrastructure state and gotchas for AI agents working on this repo. Comple
 | `favicon.svg`, `favicon-32.png`, `favicon-16.png`, `og-image.png` | — | Company logo icons (shared with the product — change both together) and social-share image |
 | `email/veratype-mark-132.png` | `https://veratype.ai/email/veratype-mark-132.png` | The logo mark (from `favicon.svg`) as a 132px PNG for email signatures, shown at 44px. Email clients do not show SVG. Outbound email links to this address, so keep it live |
 | `robots.txt` | `https://veratype.ai/robots.txt` | Allows all crawlers, references the sitemap |
-| `sitemap.xml` | `https://veratype.ai/sitemap.xml` | `/`, `/get-started`, `/students`, `/privacy`, `/trust` (the addresses that answer 200, not the `.html` ones that redirect) — update `lastmod` when a page changes (last: 2026-11-24) |
+| `sitemap.xml` | `https://veratype.ai/sitemap.xml` | `/`, `/get-started`, `/students`, `/privacy`, `/trust` (the addresses that answer 200, not the `.html` ones that redirect) — update `lastmod` when a page changes (last: 2026-11-25) |
 
 ## Contact Form
 
@@ -43,7 +43,7 @@ The contact modal on `index.html` POSTs directly to `https://api.veratype.ai/con
 `get-started.html` POSTs JSON to `https://api.veratype.ai/school-request` (`signup.js`). The backend stores the request, emails `support@veratype.ai`, and lists it on the super admin Requests page, where the school is created and the invite sent.
 
 - The form has a field no visitor sees (`website`) and sends how long the page was open (`elapsed_ms`). The backend drops a post that fills the first or arrives in under three seconds, and still answers "success". There is no CAPTCHA and no wall in front of the page; keep it that way unless spam gets through.
-- Prices, approved by Jules (2026-11-24): the plan table under "What it costs" on `get-started.html` is the only place numbers appear. The home page FAQ ("What does Veratype cost?": visible text and JSON-LD, which must match) points to it. Say "no charge" for the Classroom plan, never "free"; say nothing about what a pilot costs; do not mention card checkout, which is not built. K-12 schools and districts still get the earlier sentence word for word: "please email support@veratype.ai with your head count for pricing."
+- Prices, approved by Jules (2026-11-24; Classroom limit raised from 40 to 100 students on 2026-11-25): the plan table under "What it costs" on `get-started.html` is the only place numbers appear. The home page FAQ ("What does Veratype cost?": visible text and JSON-LD, which must match) points to it. Say "no charge" for the Classroom plan, never "free"; say nothing about what a pilot costs; do not mention card checkout, which is not built. K-12 schools and districts still get the earlier sentence word for word: "please email support@veratype.ai with your head count for pricing."
 - Who the buttons are for: every "Set up your school" button goes to `/get-started`. "Add to Chrome" is only on `/students`, because a student needs a class code and a teacher cannot use the extension.
 
 ---
